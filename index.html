@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Advertise with Us - Place Your Ads on Our App!</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Montserrat', sans-serif;
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+    }
+
+    .full-screen-bg {
+      position: relative;
+      width: 100vw;
+      height: 100vh;
+      background-image: url('./assets/images/coming_soon.png');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      transition: background-image 0.5s ease;
+    }
+
+    /* ✅ Switch background for landscape orientation */
+    @media (orientation: landscape) {
+      .full-screen-bg {
+        background-image: url('./assets/images/coming_soon_land.png');
+      }
+    }
+
+    .text-shadow-custom {
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+    }
+
+    .cta-button {
+      transition: all 0.3s ease;
+    }
+
+    .cta-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    }
+  </style>
+</head>
+<body>
+  <div class="full-screen-bg">
+    <div class="flex flex-col items-center justify-center text-center z-10 p-4">
+      <p class="text-xl md:text-2xl font-semibold uppercase tracking-wide mb-3 text-shadow-custom">
+        REACH OUR AUDIENCE
+      </p>
+      <h1 class="text-4xl md:text-6xl lg:text-7xl font-extrabold uppercase text-shadow-custom leading-tight mb-6">
+        Place Your Ads <br> on Our App
+      </h1>
+
+      <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 mt-4">
+        <a
+          href="mailto:ads@yourgreatsite.com?subject=Advertising%20Inquiry%20for%20Your%20App"
+          class="cta-button bg-white hover:bg-red-600 text-red-700 hover:text-white text-base md:text-lg font-bold py-2.5 px-6 rounded-full shadow-lg"
+        >
+          Inquire About Ad Space
+        </a>
+
+        <a
+          href="ad_details.html"
+          class="cta-button bg-gray-800 hover:bg-gray-700 text-white text-base md:text-lg font-bold py-2.5 px-6 rounded-full shadow-lg"
+        >
+          See Ad Examples
+        </a>
+      </div>
+
+      <p class="text-sm md:text-base font-medium mt-6 text-shadow-custom opacity-95">
+        Limited slots available for launch partners.
+      </p>
+    </div>
+
+    <div
+      class="absolute bottom-6 left-1/2 -translate-x-1/2 text-white text-sm md:text-base font-semibold tracking-wider opacity-90 z-20"
+    >
+      CONTACT US: ADS@YOURGREATSITE.COM
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+  <title>E-Sports Tournament Live Now</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@700&family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet" />
+  <style>
+    body {
+      font-family: 'Montserrat', sans-serif;
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+    }
+    .oswald {
+      font-family: 'Oswald', sans-serif;
+    }
+
+    .main-background-container {
+      position: relative;
+      width: 100vw;
+      height: 100vh;
+      background-image: url('../../assets/images/esport_background_landsape.png');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: white;
+    }
+
+    /* Top-left small line */
+    .top-left-line {
+      width: 30px;
+      height: 3px;
+      background-color: white;
+      margin-bottom: 5px;
+    }
+
+    /* Layout tweaks for landscape */
+    @media (orientation: landscape) {
+      .main-background-container {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        padding: 2vw 4vw;
+      }
+
+      .left-section {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: center;
+      }
+
+      .center-section {
+        text-align: center;
+      }
+
+      .bottom-section {
+        position: absolute;
+        bottom: 4%;
+        left: 50%;
+        transform: translateX(-50%);
+        text-align: center;
+      }
+
+      h2 {
+        font-size: 7vw; /* scale with screen width */
+        line-height: 1;
+      }
+
+      p {
+        font-size: 2.5vw;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="main-background-container">
+    <!-- Sponsored badge -->
+<div class="absolute top-3 right-3 z-50 text-white/70 text-[10px] md:text-xs font-semibold tracking-wide uppercase">
+  Sponsored
+</div>
+
+    <!-- Left Section -->
+    <div class="left-section absolute top-6 left-6 z-20">
+      <div class="top-left-line"></div>
+      <p class="text-xs sm:text-sm md:text-base tracking-widest uppercase oswald">E-SPORTS TOURNAMENT</p>
+      <p class="text-lg sm:text-xl md:text-2xl mt-2 uppercase font-semibold">Versus Borcelle Team</p>
+      <img src="../../assets/images/esport_logo.png" alt="E-Sports Logo" class="w-12 md:w-16 mt-3 object-contain" />
+    </div>
+
+    
+
+    <!-- Bottom Section -->
+    <div class="bottom-section z-20">
+      <!-- CTA Button -->
+<!-- CTA Button with YouTube Icon -->
+<a href="https://www.youtube.com/channel/YOUR_CHANNEL" target="_blank"
+   class="inline-flex items-center  hover:bg-red-700 text-white font-bold py-3 px-6 rounded-lg text-base sm:text-lg md:text-xl uppercase tracking-wide shadow-lg transition-all duration-300 oswald">
+   
+   <!-- YouTube Play Icon -->
+   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" class="w-5 h-5 mr-2 fill-current">
+     <path d="M549.655 124.083c-6.281-23.65-24.787-42.276-48.284-48.597C458.781 64 288 64 288 64S117.22 64 74.629 75.486c-23.497 6.322-42 24.949-48.284 48.597-11.412 42.867-11.412 132.305-11.412 132.305s0 89.438 11.412 132.305c6.281 23.65 24.787 42.276 48.284 48.597C117.22 448 288 448 288 448s170.781 0 213.371-11.486c23.497-6.322 42-24.949 48.284-48.597 11.412-42.867 11.412-132.305 11.412-132.305s0-89.438-11.412-132.305zm-317.51 213.508V175.185l142.739 81.205-142.739 81.201z"/>
+   </svg>
+
+   Watch Us On YouTube
+</a>
+
+
+      <p class="text-sm sm:text-base md:text-lg font-medium">The Gaming Channel</p>
+      <div class="w-2/3 mx-auto h-[1px] bg-white opacity-50 my-2"></div>
+    </div>
+  </div>
+</body>
+</html>

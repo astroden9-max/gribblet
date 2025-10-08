@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ad Examples Viewer (Day Theme)</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,1,0" />
+
+  <style>
+    :root {
+      --color-primary: #76c893; 
+      --color-primary-dark: #52b69a; 
+      --color-bg-light: #ffffff;
+      
+      /* Navigation Button Backgrounds (Transparent Dark) */
+      --color-nav-bg-light: rgba(0, 0, 0, 0.2); 
+      --color-nav-bg-hover: rgba(0, 0, 0, 0.4); 
+      
+      /* New Home Button Backgrounds */
+      --color-home-bg: rgba(255, 255, 255, 0.9); /* Opaque white pill */
+      --color-home-bg-hover: #ffffff; /* Pure white on hover */
+      
+      --color-text-dark: #1f2937;
+    }
+
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background-color: var(--color-bg-light);
+      color: var(--color-text-dark);
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .ad-viewer-container {
+      width: 100vw;
+      height: 100vh;
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+
+    .ad-iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      transition: opacity 0.3s ease;
+    }
+    
+    /* -------------------------------------- */
+    /* NEW HOME BUTTON STYLE (TOP CENTER) */
+    /* -------------------------------------- */
+    .home-button {
+      position: absolute;
+    display: none;
+      top: 16px; /* Space from the top */
+      left: 50%;
+      transform: translateX(-50%); /* Center the element */
+      z-index: 10;
+      
+      background: var(--color-home-bg);
+      padding: 6px 14px;
+      border-radius: 9999px; /* Pill shape */
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      color: var(--color-primary-dark); /* Green text */
+      text-decoration: none;
+      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+      transition: background-color 0.2s, box-shadow 0.2s;
+    }
+
+    .home-button:hover {
+      background: var(--color-home-bg-hover);
+      color: var(--color-primary-dark);
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+    }
+    /* -------------------------------------- */
+
+    /* Navigation button styles */
+    .nav-icon-button {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 10;
+      background-color: var(--color-nav-bg-light);
+      color: #ffffff; 
+      width: 48px;
+      height: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: none;
+      cursor: pointer;
+      transition: background-color 0.3s, opacity 0.3s, color 0.3s;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+      border-radius: 50%;
+      padding: 0;
+    }
+
+    .nav-icon-button:hover:not(:disabled) {
+      background-color: var(--color-nav-bg-hover);
+      color: #ffffff;
+    }
+
+    .nav-icon-button:disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+      color: #cccccc; 
+    }
+
+    #prevBtn {
+      left: 8px;
+    }
+
+    #nextBtn {
+      right: 8px;
+    }
+
+    .material-symbols-rounded {
+      font-size: 24px; 
+      font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 40;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="ad-viewer-container">
+    <iframe id="adFrame" class="ad-iframe"></iframe>
+  </div>
+
+  <button id="prevBtn" class="nav-icon-button">
+    <span class="material-symbols-rounded">chevron_left</span>
+  </button>
+
+  <button id="nextBtn" class="nav-icon-button">
+    <span class="material-symbols-rounded">chevron_right</span>
+  </button>
+
+  <a href="index.html" class="home-button ">
+    Back to Pricing
+  </a>
+
+  <script>
+  const adSamples = [
+    { path: 'sample-ads/youtube-media.html',  label: 'YouTube Media Ad' },
+    { path: 'sample-ads/podcast.html', landscape: 'sample-ads/landscape/podcast-landscape.html', label: 'YouTube Media Ad' },
+    { path: 'sample-ads/shoe-ads.html', landscape: 'sample-ads/landscape/coming-soon.html', label: 'E-commerce Shoe Ad' },
+    { path: 'sample-ads/how-to-make-money.html', landscape: 'sample-ads/landscape/how-to-make-money-landscape.html', label: 'How-to Video Ad' },
+    { path: 'sample-ads/shopping-bag.html', label: 'Shopping Bag Ad' },
+    { path: 'sample-ads/youtube-gamming.html' , landscape: 'sample-ads/landscape/youtube-gamming-landscape.html', label: 'YouTube Gaming Ad' },
+    
+
+    
+  ];
+
+  const adFrame = document.getElementById('adFrame');
+  const prevBtn = document.getElementById('prevBtn');
+  const nextBtn = document.getElementById('nextBtn');
+  let currentIndex = 0;
+
+  function isLandscape() {
+    return window.matchMedia("(orientation: landscape)").matches;
+  }
+
+  function getCurrentAds() {
+  if (isLandscape()) {
+    // Landscape: exclude youtube-media.html
+    return adSamples.filter(ad => ad.path !== 'sample-ads/youtube-media.html');
+  } else {
+    // Portrait: exclude podcast.html
+    return adSamples.filter(ad => ad.path !== 'sample-ads/podcast.html');
+  }
+  return adSamples;
+}
+function updateViewer() {
+  const currentAds = getCurrentAds();
+
+  // Ensure currentIndex is within bounds
+  if (currentIndex >= currentAds.length) currentIndex = 0;
+
+  const currentAd = currentAds[currentIndex];
+  const useLandscape = isLandscape() && currentAd.landscape;
+  const adPath = useLandscape ? currentAd.landscape : currentAd.path;
+
+  console.log(`Loading Ad: ${currentAd.label} (${useLandscape ? 'Landscape' : 'Portrait'})`);
+
+  adFrame.style.opacity = 0;
+  setTimeout(() => { adFrame.src = adPath; }, 100);
+  adFrame.onload = () => { adFrame.style.opacity = 1; };
+
+  prevBtn.disabled = currentIndex === 0;
+  nextBtn.disabled = currentIndex === currentAds.length - 1;
+}
+
+prevBtn.addEventListener('click', () => {
+  const currentAds = getCurrentAds();
+  if (currentIndex > 0) {
+    currentIndex--;
+    updateViewer();
+  }
+});
+
+nextBtn.addEventListener('click', () => {
+  const currentAds = getCurrentAds();
+  if (currentIndex < currentAds.length - 1) {
+    currentIndex++;
+    updateViewer();
+  }
+});
+
+// Detect orientation change dynamically
+window.addEventListener('orientationchange', () => {
+  console.log("Orientation changed. Reloading ad...");
+  currentIndex = 0; // Reset index for new orientation
+  updateViewer();
+});
+
+// Initial load
+updateViewer();
+</script>
+
+
+</body>
+</html>

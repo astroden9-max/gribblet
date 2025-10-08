@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sneakers Ad Page</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+            .rounded-red-bg {
+            background-color: #EF4444;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+        /* Gradient background for the headline */
+        .headline-gradient-bg {
+            background: linear-gradient(to top, transparent, rgba(0, 0, 0, 0.5));
+        }
+        /* Custom styles to handle specific fonts from the original XML */
+        .font-sans-condensed {
+            font-family: 'Inter', sans-serif; /* Using Inter as a close substitute */
+        }
+        .font-sans-light {
+            font-weight: 300;
+        }
+        .font-sans-black {
+            font-weight: 900;
+        }
+        
+    </style>
+</head>
+<body class="bg-gray-900 overflow-hidden">
+
+    <!-- Background Image (Sneakers Ad) -->
+    <!-- Background Image (Sneakers Ad) -->
+<div class="absolute inset-0 z-0">
+    <img src="../assets/images/sneakers_ad_background.png" alt="Sneakers Ad" class="w-full h-full object-cover">
+    <!-- Gradient overlay like Android's scrim -->
+    <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+</div>
+
+
+    <!-- Main content container -->
+    <div class="relative flex flex-col items-center justify-center min-h-screen p-6 text-center z-10">
+        <!-- Brand Logo -->
+        <img src="../assets/images/sponserd_image.png" alt="Brand Logo" class="w-32 h-32 p-3">
+
+        <!-- Headline -->
+    <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#E0CCE3] px-6 py-2  headline-gradient-bg mt-2">
+            Unleash Your Step
+        </h1>
+
+        <!-- Subtext -->
+        <p class="text-white text-base sm:text-lg mt-3">
+            Sneakers that redefine comfort &amp; style
+        </p>
+
+        <!-- Secondary Promo Line -->
+        <p class="text-white text-sm sm:text-base mt-2 font-light">
+            Engineered for everyday performance
+        </p>
+
+        <!-- Limited Time Offer Banner -->
+        <div class="text-white text-base sm:text-lg font-bold px-4 py-2 mt-4 shadow-lg headline-gradient-bg">
+            🔥 Limited Time Offer: 20% OFF 🔥
+        </div>
+
+        <!-- Key Highlights -->
+        <p class="text-white text-sm sm:text-base mt-3">
+            • Lightweight cushioning<br>• Breathable mesh design<br>• Bold modern style
+        </p>
+
+        <!-- Stats Row -->
+        <div class="w-full max-w-sm p-3 mt-6 flex justify-around items-center space-x-2 headline-gradient-bg">
+
+    <div class="flex-1 flex flex-col items-center">
+        <span class="text-white text-lg sm:text-xl font-bold font-mono">12.5K</span>
+        <span class="text-gray-300 text-xs sm:text-sm font-mono">Visitors</span>
+    </div>
+
+    <div class="w-px h-full bg-gray-400 opacity-50 my-1"></div>
+
+    <div class="flex-1 flex flex-col items-center">
+        <span class="text-white text-lg sm:text-xl font-bold font-mono">3.2K</span>
+        <span class="text-gray-300 text-xs sm:text-sm font-mono">Clicks</span>
+    </div>
+
+    <div class="w-px h-full bg-gray-400 opacity-50 my-1"></div>
+
+    <div class="flex-1 flex flex-col items-center">
+        <span class="text-white text-lg sm:text-xl font-bold font-mono">25%</span>
+        <span class="text-gray-300 text-xs sm:text-sm font-mono">CTR</span>
+    </div>
+</div>
+
+
+        <!-- CTA Button -->
+        <button class="bg-white text-black rounded-full px-8 py-3 mt-10 shadow-2xl hover:bg-gray-200 transition-colors">
+    Shop Now
+</button>
+
+    </div>
+
+    <!-- Ad Disclosure (Top Right) -->
+    <div class="absolute top-4 right-4 bg-black bg-opacity-40 text-white text-xs px-2 py-1 headline-gradient-bg">
+        Sponsored
+    </div>
+
+    <!-- Footer Disclaimer (Bottom Center) -->
+    <div class="absolute text-white  bottom-4 left-1/2 transform -translate-x-1/2 text-center  text-xs bg-opacity-40 px-3 py-1 headline-gradient-bg">
+        *Terms &amp; Conditions Apply
+    </div>
+
+</body>
+</html>
