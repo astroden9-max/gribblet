@@ -36,33 +36,20 @@
     </head>
 <body>
   <div id="ad-container">
-    <script type='text/javascript'>
-      // 🚀 CRITICAL FIX: Update URL to the final production, cloaked domain
-      var m3_u = 'https://assets.gribblet-dev.shop/resources/www/delivery/ajs.php';
-      
-      var m3_r = Math.floor(Math.random() * 99999999999);
-      if (!document.MAX_used) document.MAX_used = ',';
-      
-      // The start of the script tag (e.g., <script src='...')
-      document.write("<scr"+"ipt type='text/javascript' src='"+m3_u); 
-      
-      document.write("?zoneid=1");
-      document.write('&amp;cb=' + m3_r);
-      if (document.MAX_used != ',') document.write("&amp;exclude=" + document.MAX_used);
-      document.write(document.charset ? '&amp;charset=' + document.charset : (document.characterSet ? '&amp;charset=' + document.characterSet : ''));
-      document.write("&amp;loc=" + escape(window.location));
-      if (document.referrer) document.write("&amp;referer=" + escape(document.referrer));
-      if (document.context) document.write("&context=" + escape(document.context));
-      
-      // Correctly close the attributes and the script tag.
-      document.write("'><\/scr"+"ipt>"); 
-    </script>
-    <noscript>
-      <a href='https://assets.gribblet-dev.shop/resources/www/delivery/ck.php?n=a23e0445&amp;cb=INSERT_RANDOM_NUMBER_HERE' target='_blank'>
-        <img src='https://assets.gribblet-dev.shop/resources/www/delivery/avw.php?zoneid=1&amp;cb=INSERT_RANDOM_NUMBER_HERE&amp;n=a23e0445' border='0' alt='' />
-      </a>
-    </noscript>
-
+    <script type='text/javascript'><!--//<![CDATA[
+   var m3_u = (location.protocol=='https:'?'https://assets.gribblet-dev.shop/resources/www/delivery/ajs.php':'http://assets.gribblet-dev.shop/resources/www/delivery/ajs.php');
+   var m3_r = Math.floor(Math.random()*99999999999);
+   if (!document.MAX_used) document.MAX_used = ',';
+   document.write ("<scr"+"ipt type='text/javascript' src='"+m3_u);
+   document.write ("?zoneid=1");
+   document.write ('&amp;cb=' + m3_r);
+   if (document.MAX_used != ',') document.write ("&amp;exclude=" + document.MAX_used);
+   document.write (document.charset ? '&amp;charset='+document.charset : (document.characterSet ? '&amp;charset='+document.characterSet : ''));
+   document.write ("&amp;loc=" + escape(window.location));
+   if (document.referrer) document.write ("&amp;referer=" + escape(document.referrer));
+   if (document.context) document.write ("&context=" + escape(document.context));
+   document.write ("'><\/scr"+"ipt>");
+//]]>--></script><noscript><a href='https://assets.gribblet-dev.shop/resources/www/delivery/ck.php?n=a06d78aa&amp;cb=INSERT_RANDOM_NUMBER_HERE' target='_blank'><img src='https://assets.gribblet-dev.shop/resources/www/delivery/avw.php?zoneid=1&amp;cb=INSERT_RANDOM_NUMBER_HERE&amp;n=a06d78aa' border='0' alt='' /></a></noscript>
     <script>
       // 🚀 CRITICAL FIX: Add the ad success signal script back.
       // This script checks if the ad content has been injected by ajs.php
