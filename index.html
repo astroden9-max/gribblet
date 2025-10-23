@@ -1,88 +1,85 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Advertise with Us</title>
-<style>
-html, body {
-  margin: 0; padding: 0; width: 100%; height: 100%; overflow: hidden;
-}
-iframe {
-  width: 100%; height: 100%; border: none;
-}
-</style>
-</head>
+    <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Revive Ad Test</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 100%;
+      background: #000;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    #ad-container a {
+      width: 100% !important;
+      height: 100% !important;
+      display: block !important; /* Anchor tags are inline by default */
+      line-height: 0; /* Prevents unwanted space/height due to text properties */
+    }
+    #ad-container {
+      width: 100% !important;
+      height: 100% !important;
+      margin: 0 !important;
+      padding: 0 !important;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: #111;
+    }
+
+    /* Force iframe or image inside ad to fill container */
+    #ad-container iframe,
+    #ad-container img {
+      width: 100% !important;
+      height: 100% !important;
+      object-fit: cover;
+      display: block;
+    }
+  </style>
+    </head>
 <body>
-
-<iframe id="ad-frame" src=""></iframe>
-
-<script>
-const iframe = document.getElementById('ad-frame');
-const reviveAdUrl = "reviveads.html";
-const sponsorPageUrl = "sponsourpage.html";
-const maxWait = 10000; // 5 seconds maximum wait time
-let timeoutId; 
-
-// 1. Create a background iframe to check for the ad
-const adPreloader = document.createElement('iframe');
-adPreloader.style.display = 'none'; // Keep it hidden
-document.body.appendChild(adPreloader);
-
-// 2. Define the message handler function
-const handleMessage = function(event) {
-  // Check for the specific success signal from the iframe
-  if (event.data === 'ad-loaded-success') {
-    console.log("SUCCESS SIGNAL RECEIVED. Switching from sponsor page to ad page.");
-    
-    // 🛑 CRITICAL: Cancel the pending timeout since the ad is ready
-    if (timeoutId) {
-      clearTimeout(timeoutId); 
-    }
-    
-    // 🚀 Switch the main visible iframe to the ad page
-    // The ad content is likely cached/ready from the background load
-    if (iframe.src.includes(sponsorPageUrl)) {
-        iframe.src = reviveAdUrl;
-    }
-
-    // Clean up the listener and the preloader
-    window.removeEventListener('message', handleMessage); 
-    adPreloader.remove(); 
-  }
-};
-
-// 3. Start listening for the success signal
-window.addEventListener('message', handleMessage);
-
-// 4. Set up the Timeout to stop waiting for the ad
-timeoutId = setTimeout(() => {
-  console.log("Max wait time reached. Stopping background ad check.");
-  // Ad check failed or was too slow. The main iframe already shows the sponsor page.
-  window.removeEventListener('message', handleMessage); // Stop listening
-  adPreloader.remove(); // Clean up the hidden preloader
-}, maxWait);
-
-
-// 5. Start with the Sponsor Page (Default)
-iframe.src = sponsorPageUrl;
-console.log(`Default page set to: ${sponsorPageUrl}`);
-
-// 6. Start the Ad Check in the Background
-adPreloader.src = reviveAdUrl;
-console.log(`Background ad check started with: ${reviveAdUrl}`);
-
-
-// Optional: Add an error handler for the preloader failing to load the file itself
-adPreloader.onerror = function() {
-    console.error("Error loading reviveads.html file itself. Cancelling check.");
-    if (timeoutId) {
-      clearTimeout(timeoutId);
-    }
-    window.removeEventListener('message', handleMessage);
-    adPreloader.remove();
-};
-</script>
-
+  <div id="ad-container">
+    <script type='text/javascript'><!--//<![CDATA[
+   var m3_u = (location.protocol=='https:'?'https://assets.gribblet-dev.shop/resources/www/delivery/ajs.php':'http://assets.gribblet-dev.shop/resources/www/delivery/ajs.php');
+   var m3_r = Math.floor(Math.random()*99999999999);
+   if (!document.MAX_used) document.MAX_used = ',';
+   document.write ("<scr"+"ipt type='text/javascript' src='"+m3_u);
+   document.write ("?zoneid=1");
+   document.write ('&amp;cb=' + m3_r);
+   if (document.MAX_used != ',') document.write ("&amp;exclude=" + document.MAX_used);
+   document.write (document.charset ? '&amp;charset='+document.charset : (document.characterSet ? '&amp;charset='+document.characterSet : ''));
+   document.write ("&amp;loc=" + escape(window.location));
+   if (document.referrer) document.write ("&amp;referer=" + escape(document.referrer));
+   if (document.context) document.write ("&context=" + escape(document.context));
+   document.write ("'><\/scr"+"ipt>");
+//]]>--></script><noscript><a href='https://assets.gribblet-dev.shop/resources/www/delivery/ck.php?n=a06d78aa&amp;cb=INSERT_RANDOM_NUMBER_HERE' target='_blank'><img src='https://assets.gribblet-dev.shop/resources/www/delivery/avw.php?zoneid=1&amp;cb=INSERT_RANDOM_NUMBER_HERE&amp;n=a06d78aa' border='0' alt='' /></a></noscript>
+    <script>
+      // 🚀 CRITICAL FIX: Add the ad success signal script back.
+      // This script checks if the ad content has been injected by ajs.php
+      // and signals the parent index.html to stop the fallback timer.
+      setTimeout(() => {
+          // Check for the generated ad content (an iframe or an image)
+          const adContent = document.querySelector('#ad-container iframe, #ad-container img');
+          
+          if (adContent) {
+              console.log("Ad content detected. Signaling parent to prevent fallback.");
+              try {
+                  // Send the success message to the parent frame
+                  window.parent.postMessage('ad-loaded-success', '*');
+              } catch (e) {
+                  console.error("Error sending postMessage:", e);
+              }
+          } else {
+              // If no ad content is found, the parent's timeout will handle the fallback
+              console.log("No ad content detected, parent timeout will initiate fallback.");
+          }
+      }, 1000); // Wait 1 second (1000ms) to allow the ajs.php script to inject the ad
+    </script>
+  </div>
 </body>
 </html>
