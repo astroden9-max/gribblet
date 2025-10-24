@@ -1,103 +1,88 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Revive Ad Test</title>
-  <style>
-    html, body {
-      margin: 0;
-      padding: 0;
-      width: 100%;
-      height: 100%;
-      background: #000;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-
-    #ad-container a {
-      width: 100% !important;
-      height: 100% !important;
-      display: block !important;
-      line-height: 0;
-    }
-
-    #ad-container {
-      width: 100% !important;
-      height: 100% !important;
-      margin: 0 !important;
-      padding: 0 !important;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      background-color: #111;
-    }
-
-    #ad-container iframe,
-    #ad-container img {
-      width: 100% !important;
-      height: 100% !important;
-      object-fit: cover;
-      display: block;
-    }
-
-    #click-capture {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      cursor: pointer;
-      z-index: 9999;
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Advertise with Us</title>
+<style>
+html, body {
+  margin: 0; padding: 0; width: 100%; height: 100%; overflow: hidden;
+}
+iframe {
+  width: 100%; height: 100%; border: none;
+}
+</style>
 </head>
 <body>
-  <div id="ad-container">
-    <script type="text/javascript">
-      var m3_u = (location.protocol=='https:'?'https://assets.gribblet-dev.shop/resources/www/delivery/ajs.php':'http://assets.gribblet-dev.shop/resources/www/delivery/ajs.php');
-      var m3_r = Math.floor(Math.random()*99999999999);
-      if (!document.MAX_used) document.MAX_used = ',';
-      document.write("<scr"+"ipt type='text/javascript' src='"+m3_u);
-      document.write("?zoneid=1");
-      document.write('&cb=' + m3_r);
-      if (document.MAX_used != ',') document.write("&exclude=" + document.MAX_used);
-      document.write(document.charset ? '&charset='+document.charset : (document.characterSet ? '&charset='+document.characterSet : ''));
-      document.write("&loc=" + encodeURIComponent(window.location));
-      document.write("'><\/scr"+"ipt>");
-    </script>
 
-    <div id="click-capture"></div>
-  </div>
+<iframe id="ad-frame" src=""></iframe>
 
-  <script>
-    const overlay = document.getElementById('click-capture');
+<script>
+const iframe = document.getElementById('ad-frame');
+const reviveAdUrl = "reviveads.html";
+const sponsorPageUrl = "sponsourpage.html";
+const maxWait = 5000; // 5 seconds maximum wait time
+let timeoutId; 
 
-    // Signal ad-loaded-success after a delay (4s)
-    setTimeout(() => {
-      try {
-        window.parent.postMessage('ad-loaded-success', '*');
-        console.log("Ad load signal sent to parent.");
-      } catch(e) {
-        console.error("postMessage failed:", e);
-      }
-    }, 4000); // match index.html timeout
+// 1. Create a background iframe to check for the ad
+const adPreloader = document.createElement('iframe');
+adPreloader.style.display = 'none'; // Keep it hidden
+document.body.appendChild(adPreloader);
 
-    // Click overlay
-    overlay.addEventListener('click', () => {
-      const adLink = document.querySelector('#ad-container a');
-      if (adLink) {
-        window.parent.postMessage('ad-clicked', '*');
-        window.location.href = adLink.href;
-      }
-    });
-  </script>
+// 2. Define the message handler function
+const handleMessage = function(event) {
+  // Check for the specific success signal from the iframe
+  if (event.data === 'ad-loaded-success') {
+    console.log("SUCCESS SIGNAL RECEIVED. Switching from sponsor page to ad page.");
+    
+    // 🛑 CRITICAL: Cancel the pending timeout since the ad is ready
+    if (timeoutId) {
+      clearTimeout(timeoutId); 
+    }
+    
+    // 🚀 Switch the main visible iframe to the ad page
+    // The ad content is likely cached/ready from the background load
+    if (iframe.src.includes(sponsorPageUrl)) {
+        iframe.src = reviveAdUrl;
+    }
 
-  <noscript>
-    <a href='https://assets.gribblet-dev.shop/resources/www/delivery/ck.php?n=a06d78aa&amp;cb=INSERT_RANDOM_NUMBER_HERE' target='_blank'>
-      <img src='https://assets.gribblet-dev.shop/resources/www/delivery/avw.php?zoneid=1&amp;cb=INSERT_RANDOM_NUMBER_HERE&amp;n=a06d78aa' border='0' alt='' />
-    </a>
-  </noscript>
+    // Clean up the listener and the preloader
+    window.removeEventListener('message', handleMessage); 
+    adPreloader.remove(); 
+  }
+};
+
+// 3. Start listening for the success signal
+window.addEventListener('message', handleMessage);
+
+// 4. Set up the Timeout to stop waiting for the ad
+timeoutId = setTimeout(() => {
+  console.log("Max wait time reached. Stopping background ad check.");
+  // Ad check failed or was too slow. The main iframe already shows the sponsor page.
+  window.removeEventListener('message', handleMessage); // Stop listening
+  adPreloader.remove(); // Clean up the hidden preloader
+}, maxWait);
+
+
+// 5. Start with the Sponsor Page (Default)
+iframe.src = sponsorPageUrl;
+console.log(`Default page set to: ${sponsorPageUrl}`);
+
+// 6. Start the Ad Check in the Background
+adPreloader.src = reviveAdUrl;
+console.log(`Background ad check started with: ${reviveAdUrl}`);
+
+
+// Optional: Add an error handler for the preloader failing to load the file itself
+adPreloader.onerror = function() {
+    console.error("Error loading reviveads.html file itself. Cancelling check.");
+    if (timeoutId) {
+      clearTimeout(timeoutId);
+    }
+    window.removeEventListener('message', handleMessage);
+    adPreloader.remove();
+};
+</script>
+
 </body>
 </html>
