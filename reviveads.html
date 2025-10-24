@@ -16,12 +16,13 @@
       align-items: center;
     }
 
-#ad-container a {
+    #ad-container a {
       width: 100% !important;
       height: 100% !important;
-      display: block !important; /* Anchor tags are inline by default */
-      line-height: 0; /* Prevents unwanted space/height due to text properties */
+      display: block !important;
+      line-height: 0;
     }
+
     #ad-container {
       width: 100% !important;
       height: 100% !important;
@@ -55,7 +56,6 @@
 <body>
   <div id="ad-container">
     <script type="text/javascript">
-      // Inject Revive ad
       var m3_u = (location.protocol=='https:'?'https://assets.gribblet-dev.shop/resources/www/delivery/ajs.php':'http://assets.gribblet-dev.shop/resources/www/delivery/ajs.php');
       var m3_r = Math.floor(Math.random()*99999999999);
       if (!document.MAX_used) document.MAX_used = ',';
@@ -72,44 +72,24 @@
   </div>
 
   <script>
-    const adContainer = document.getElementById('ad-container');
     const overlay = document.getElementById('click-capture');
 
-    // Function to signal ad load success
-    function signalAdLoad() {
-      console.log("Ad content detected. Signaling parent to prevent fallback.");
+    // Signal ad-loaded-success after a delay (4s)
+    setTimeout(() => {
       try {
         window.parent.postMessage('ad-loaded-success', '*');
-      } catch (e) {
-        console.error("Error sending postMessage:", e);
-      }
-    }
-
-    // MutationObserver to detect ad injection
-    const observer = new MutationObserver(mutations => {
-      const adContent = adContainer.querySelector('a, iframe, img');
-      if (adContent) {
-        signalAdLoad();
-      }
-    });
-
-    observer.observe(adContainer, { childList: true, subtree: true });
-
-    // Click overlay logic
-    overlay.addEventListener('click', () => {
-      const adLink = adContainer.querySelector('a');
-      const targetUrl = adLink ? adLink.href : null;
-
-      console.log("Ad clicked. Navigating to:", targetUrl);
-
-      try {
-        window.parent.postMessage('ad-clicked', '*');
-      } catch (e) {
+        console.log("Ad load signal sent to parent.");
+      } catch(e) {
         console.error("postMessage failed:", e);
       }
+    }, 4000); // match index.html timeout
 
-      if (targetUrl) {
-        window.location.href = targetUrl;
+    // Click overlay
+    overlay.addEventListener('click', () => {
+      const adLink = document.querySelector('#ad-container a');
+      if (adLink) {
+        window.parent.postMessage('ad-clicked', '*');
+        window.location.href = adLink.href;
       }
     });
   </script>
