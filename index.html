@@ -21,67 +21,28 @@ iframe {
 const iframe = document.getElementById('ad-frame');
 const reviveAdUrl = "reviveads.html";
 const sponsorPageUrl = "sponsourpage.html";
-const maxWait = 5000; // 5 seconds maximum wait time
-let timeoutId; 
+const maxWait = 5000; // 5s
 
-// 1. Create a background iframe to check for the ad
-const adPreloader = document.createElement('iframe');
-adPreloader.style.display = 'none'; // Keep it hidden
-document.body.appendChild(adPreloader);
-
-// 2. Define the message handler function
-const handleMessage = function(event) {
-  // Check for the specific success signal from the iframe
-  if (event.data === 'ad-loaded-success') {
-    console.log("SUCCESS SIGNAL RECEIVED. Switching from sponsor page to ad page.");
-    
-    // 🛑 CRITICAL: Cancel the pending timeout since the ad is ready
-    if (timeoutId) {
-      clearTimeout(timeoutId); 
-    }
-    
-    // 🚀 Switch the main visible iframe to the ad page
-    // The ad content is likely cached/ready from the background load
-    if (iframe.src.includes(sponsorPageUrl)) {
-        iframe.src = reviveAdUrl;
-    }
-
-    // Clean up the listener and the preloader
-    window.removeEventListener('message', handleMessage); 
-    adPreloader.remove(); 
-  }
-};
-
-// 3. Start listening for the success signal
-window.addEventListener('message', handleMessage);
-
-// 4. Set up the Timeout to stop waiting for the ad
-timeoutId = setTimeout(() => {
-  console.log("Max wait time reached. Stopping background ad check.");
-  // Ad check failed or was too slow. The main iframe already shows the sponsor page.
-  window.removeEventListener('message', handleMessage); // Stop listening
-  adPreloader.remove(); // Clean up the hidden preloader
+let fallbackTimeout = setTimeout(() => {
+    console.log("Ad did not load in time. Showing sponsor page.");
+    iframe.src = sponsorPageUrl;
 }, maxWait);
 
-
-// 5. Start with the Sponsor Page (Default)
-iframe.src = sponsorPageUrl;
-console.log(`Default page set to: ${sponsorPageUrl}`);
-
-// 6. Start the Ad Check in the Background
-adPreloader.src = reviveAdUrl;
-console.log(`Background ad check started with: ${reviveAdUrl}`);
-
-
-// Optional: Add an error handler for the preloader failing to load the file itself
-adPreloader.onerror = function() {
-    console.error("Error loading reviveads.html file itself. Cancelling check.");
-    if (timeoutId) {
-      clearTimeout(timeoutId);
+// Listen for ad load signal
+window.addEventListener('message', (event) => {
+    if (event.data === 'ad-loaded-success') {
+        console.log("Ad loaded successfully, keeping iframe on ad.");
+        clearTimeout(fallbackTimeout);
+    } else if (event.data === 'ad-failed') {
+        console.log("Ad failed to load. Showing sponsor page.");
+        iframe.src = sponsorPageUrl;
+        clearTimeout(fallbackTimeout);
     }
-    window.removeEventListener('message', handleMessage);
-    adPreloader.remove();
-};
+});
+
+// Start by loading the ad
+iframe.src = reviveAdUrl;
+console.log(`Loading ad: ${reviveAdUrl}`);
 </script>
 
 </body>
