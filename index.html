@@ -1,61 +1,118 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Revive Ad Test</title>
-<style>
-  html, body {
-    margin: 0; padding: 0; width: 100%; height: 100%;
-    background: #000; display: flex; justify-content: center; align-items: center;
-  }
-  #ad-container {
-    width: 100%; height: 100%; display: flex; justify-content: center; align-items: center;
-    background-color: #111; margin: 0; padding: 0;
-  }
-  #ad-container iframe, #ad-container img {
-    width: 100%; height: 100%; object-fit: cover; display: block;
-  }
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Revive Ad Test</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 100%;
+      background: #000;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    #ad-container {
+      position: relative;
+      width: 100% !important;
+      height: 100% !important;
+      margin: 0 !important;
+      padding: 0 !important;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: #111;
+    }
+
+    #ad-container iframe,
+    #ad-container img {
+      width: 100% !important;
+      height: 100% !important;
+      object-fit: cover;
+      display: block;
+    }
+
+    #click-capture {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      cursor: pointer;
+      z-index: 9999;
+    }
+  </style>
 </head>
 <body>
-<div id="ad-container">
-  <script type='text/javascript'>
-    var m3_u = (location.protocol=='https:'?'https://assets.gribblet-dev.shop/resources/www/delivery/ajs.php':'http://assets.gribblet-dev.shop/resources/www/delivery/ajs.php');
-    var m3_r = Math.floor(Math.random()*99999999999);
-    if (!document.MAX_used) document.MAX_used = ',';
-    document.write("<scr"+"ipt type='text/javascript' src='"+m3_u);
-    document.write("?zoneid=1");
-    document.write('&cb=' + m3_r);
-    if (document.MAX_used != ',') document.write("&exclude=" + document.MAX_used);
-    document.write(document.charset ? '&charset='+document.charset : (document.characterSet ? '&charset='+document.characterSet : ''));
-    document.write("&loc=" + encodeURIComponent(window.location));
-    document.write("'><\/scr"+"ipt>");
-  </script>
-</div>
+  <div id="ad-container">
+    <script type="text/javascript">
+      // Inject Revive ad
+      var m3_u = (location.protocol=='https:'?'https://assets.gribblet-dev.shop/resources/www/delivery/ajs.php':'http://assets.gribblet-dev.shop/resources/www/delivery/ajs.php');
+      var m3_r = Math.floor(Math.random()*99999999999);
+      if (!document.MAX_used) document.MAX_used = ',';
+      document.write("<scr"+"ipt type='text/javascript' src='"+m3_u);
+      document.write("?zoneid=1");
+      document.write('&cb=' + m3_r);
+      if (document.MAX_used != ',') document.write("&exclude=" + document.MAX_used);
+      document.write(document.charset ? '&charset='+document.charset : (document.characterSet ? '&charset='+document.characterSet : ''));
+      document.write("&loc=" + encodeURIComponent(window.location));
+      document.write("'><\/scr"+"ipt>");
+    </script>
 
-<script>
-  // Listen for messages from the iframe/ad content
-  window.addEventListener('message', (event) => {
-    // Ensure the message comes from the Revive domain
-    if (event.origin !== "https://assets.gribblet-dev.shop") return;
+    <div id="click-capture"></div>
+  </div>
 
-    const data = event.data;
-    if (data === 'ad-clicked') {
-      console.log("Ad clicked, navigating in same tab...");
-      // Use Brave's navigation API (if inside NTP)
+  <script>
+    const adContainer = document.getElementById('ad-container');
+    const overlay = document.getElementById('click-capture');
+
+    // Function to signal ad load success
+    function signalAdLoad() {
+      console.log("Ad content detected. Signaling parent to prevent fallback.");
       try {
-        window.parent.postMessage({ type: 'navigate', url: 'https://timesofindia.indiatimes.com/' }, '*');
+        window.parent.postMessage('ad-loaded-success', '*');
       } catch (e) {
-        // Fallback for testing in browser
-        window.location.href = 'https://timesofindia.indiatimes.com/';
+        console.error("Error sending postMessage:", e);
       }
     }
-    if (data === 'ad-loaded-success') {
-      console.log("Ad loaded successfully.");
-      // Stop fallback timer in parent if needed
-    }
-  });
-</script>
+
+    // MutationObserver to detect ad injection
+    const observer = new MutationObserver(mutations => {
+      const adContent = adContainer.querySelector('a, iframe, img');
+      if (adContent) {
+        signalAdLoad();
+      }
+    });
+
+    observer.observe(adContainer, { childList: true, subtree: true });
+
+    // Click overlay logic
+    overlay.addEventListener('click', () => {
+      const adLink = adContainer.querySelector('a');
+      const targetUrl = adLink ? adLink.href : null;
+
+      console.log("Ad clicked. Navigating to:", targetUrl);
+
+      try {
+        window.parent.postMessage('ad-clicked', '*');
+      } catch (e) {
+        console.error("postMessage failed:", e);
+      }
+
+      if (targetUrl) {
+        window.location.href = targetUrl;
+      }
+    });
+  </script>
+
+  <noscript>
+    <a href='https://assets.gribblet-dev.shop/resources/www/delivery/ck.php?n=a06d78aa&amp;cb=INSERT_RANDOM_NUMBER_HERE' target='_blank'>
+      <img src='https://assets.gribblet-dev.shop/resources/www/delivery/avw.php?zoneid=1&amp;cb=INSERT_RANDOM_NUMBER_HERE&amp;n=a06d78aa' border='0' alt='' />
+    </a>
+  </noscript>
 </body>
 </html>
