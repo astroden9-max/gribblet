@@ -1,88 +1,90 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Advertise with Us</title>
-<style>
-html, body {
-  margin: 0; padding: 0; width: 100%; height: 100%; overflow: hidden;
-}
-iframe {
-  width: 100%; height: 100%; border: none;
-}
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Advertise with Us - Place Your Ads on Our App!</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Montserrat', sans-serif;
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+    }
+
+    .full-screen-bg {
+      position: relative;
+      width: 100vw;
+      height: 100vh;
+      background-image: url('./assets/images/coming_soon.png');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      transition: background-image 0.5s ease;
+    }
+
+    /* ✅ Switch background for landscape orientation */
+    @media (orientation: landscape) {
+      .full-screen-bg {
+        background-image: url('./assets/images/coming_soon_land.png');
+      }
+    }
+
+    .text-shadow-custom {
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+    }
+
+    .cta-button {
+      transition: all 0.3s ease;
+    }
+
+    .cta-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    }
+  </style>
 </head>
 <body>
+  <div class="full-screen-bg">
+    <div class="flex flex-col items-center justify-center text-center z-10 p-4 ">
+      <p class="text-xl md:text-2xl font-semibold uppercase tracking-wide mb-3 text-shadow-custom mt-12">
+        REACH OUR AUDIENCE
+      </p>
+      <h1 class="text-4xl md:text-6xl lg:text-7xl font-extrabold uppercase text-shadow-custom leading-tight mb-6">
+        Place Your Ads <br> on Our App
+      </h1>
 
-<iframe id="ad-frame" src=""></iframe>
+      <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 mt-4">
+     <a
+  href="mailto:anahata.software@gmail.com?subject=Advertising%20Inquiry%20-%20App%20Ad%20Space&body=Hello%20Anahata%20Team,%0D%0A%0D%0AI%20am%20interested%20in%20placing%20an%20ad%20on%20your%20app.%20Please%20provide%20details%20about%20pricing,%20available%20slots,%20and%20ad%20formats.%0D%0A%0D%0AAdvertiser%20Name:%0D%0ACompany:%0D%0AContact%20Number:%0D%0AEmail:%0D%0A%0D%0AThank%20you!"
+  class="cta-button bg-white hover:bg-red-600 text-red-700 hover:text-white text-base md:text-lg font-bold py-2.5 px-6 rounded-full shadow-lg"
+>
+          Inquire About Ad Space
+        </a>
+<a href="ad_details.html"
+          class="cta-button bg-gray-800 hover:bg-gray-700 text-white text-base md:text-lg font-bold py-2.5 px-6 rounded-full shadow-lg"
+        >
+          See Ad Examples
+        </a>
+      </div>
 
-<script>
-const iframe = document.getElementById('ad-frame');
-const reviveAdUrl = "reviveads.html";
-const sponsorPageUrl = "sponsourpage.html";
-const maxWait = 5000; // 5 seconds maximum wait time
-let timeoutId; 
-
-// 1. Create a background iframe to check for the ad
-const adPreloader = document.createElement('iframe');
-adPreloader.style.display = 'none'; // Keep it hidden
-document.body.appendChild(adPreloader);
-
-// 2. Define the message handler function
-const handleMessage = function(event) {
-  // Check for the specific success signal from the iframe
-  if (event.data === 'ad-loaded-success') {
-    console.log("SUCCESS SIGNAL RECEIVED. Switching from sponsor page to ad page.");
-    
-    // 🛑 CRITICAL: Cancel the pending timeout since the ad is ready
-    if (timeoutId) {
-      clearTimeout(timeoutId); 
-    }
-    
-    // 🚀 Switch the main visible iframe to the ad page
-    // The ad content is likely cached/ready from the background load
-    if (iframe.src.includes(sponsorPageUrl)) {
-        iframe.src = reviveAdUrl;
-    }
-
-    // Clean up the listener and the preloader
-    window.removeEventListener('message', handleMessage); 
-    adPreloader.remove(); 
-  }
-};
-
-// 3. Start listening for the success signal
-window.addEventListener('message', handleMessage);
-
-// 4. Set up the Timeout to stop waiting for the ad
-timeoutId = setTimeout(() => {
-  console.log("Max wait time reached. Stopping background ad check.");
-  // Ad check failed or was too slow. The main iframe already shows the sponsor page.
-  window.removeEventListener('message', handleMessage); // Stop listening
-  adPreloader.remove(); // Clean up the hidden preloader
-}, maxWait);
-
-
-// 5. Start with the Sponsor Page (Default)
-iframe.src = sponsorPageUrl;
-console.log(`Default page set to: ${sponsorPageUrl}`);
-
-// 6. Start the Ad Check in the Background
-adPreloader.src = reviveAdUrl;
-console.log(`Background ad check started with: ${reviveAdUrl}`);
-
-
-// Optional: Add an error handler for the preloader failing to load the file itself
-adPreloader.onerror = function() {
-    console.error("Error loading reviveads.html file itself. Cancelling check.");
-    if (timeoutId) {
-      clearTimeout(timeoutId);
-    }
-    window.removeEventListener('message', handleMessage);
-    adPreloader.remove();
-};
-</script>
-
+    <p class="text-sm md:text-base font-medium mt-6 text-shadow-custom opacity-95">
+        Limited slots available for launch partners. <br>
+        Starting cost: ₹120 per 1000 impressions (full-page mobile).
+      </p>
+    </div>
+<div
+      class="absolute bottom-6 left-1/2 -translate-x-1/2 text-white text-sm md:text-base font-semibold tracking-wider opacity-90 z-20"
+    >
+      CONTACT US: anahata.software@gmail.com
+    </div>
+  </div>
 </body>
 </html>
