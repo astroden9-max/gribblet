@@ -51,6 +51,18 @@
     }
   </style>
 </head>
+  <script>
+  // Detect clicks on mailto links and notify parent
+  document.addEventListener('click', function (e) {
+    const target = e.target.closest('a');
+
+    if (target && target.href.startsWith('mailto:')) {
+      e.preventDefault(); // Stop iframe from blocking it
+      window.parent.postMessage({ type: 'open-mail', href: target.href }, '*');
+    }
+  });
+</script>
+
 <body>
   <div class="full-screen-bg">
     <div class="flex flex-col items-center justify-center text-center z-10 p-4 ">
