@@ -37,7 +37,7 @@
       background-repeat: no-repeat;
       display: flex;
       flex-direction: column;
-      justify-content: flex-start;
+      justify-content: center;
       align-items: center;
       color: white;
       padding: 2rem 1rem;
@@ -69,6 +69,7 @@
       position: relative;
       overflow: hidden;
       transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      cursor: pointer;
     }
 
     .cta-primary:hover {
@@ -89,45 +90,26 @@
       transform: translateY(-3px);
     }
 
-    .loader {
-      border: 2px solid rgba(255, 255, 255, 0.1);
-      border-top: 2px solid var(--primary-20);
-      border-radius: 50%;
-      width: 14px;
-      height: 14px;
-      animation: spin 1s linear infinite;
-      display: none;
+    .star-rating span {
+      transition: transform 0.2s ease;
+      display: inline-block;
+      cursor: default;
     }
 
-    @keyframes spin {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
-    }
-
-    .glass-card {
-      background: rgba(255, 255, 255, 0.03);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      backdrop-filter: blur(16px);
-      border-radius: 1.5rem;
-      transition: transform 0.3s ease;
-    }
-
-    .glass-card:hover {
-      border-color: rgba(255, 255, 255, 0.2);
+    .star-rating:hover span {
+      transform: scale(1.2);
+      color: var(--indian-saffron);
+      filter: drop-shadow(0 0 12px var(--indian-saffron));
     }
 
     .tricolor-footer {
-      position: fixed;
+      position: absolute;
       bottom: 0;
       left: 0;
       width: 100%;
       height: 4px;
       display: flex;
-      z-index: 50;
-    }
-
-    input::placeholder {
-      color: rgba(255, 255, 255, 0.4);
+      z-index: 20;
     }
   </style>
 </head>
@@ -136,110 +118,55 @@
     <div class="overlay"></div>
     <div class="pattern-overlay"></div>
 
-    <div class="relative flex flex-col items-center justify-center text-center z-10 p-6 max-w-2xl w-full pt-8 md:pt-16 pb-32">
+    <div class="relative flex flex-col items-center justify-center text-center z-10 p-6 max-w-2xl w-full">
       
       <!-- Cultural Icon -->
-      <div class="mb-4 animate-pulse">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 md:h-16 md:w-16" fill="none" viewBox="0 0 24 24" stroke="var(--primary-20)" stroke-width="1.5">
+      <div class="mb-6 animate-pulse">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16 md:h-20 md:w-20" fill="none" viewBox="0 0 24 24" stroke="var(--primary-20)" stroke-width="1.5">
           <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364l-.707.707M6.343 17.657l-.707.707m12.728 0l-.707-.707M6.343 6.343l-.707-.707M12 7a5 5 0 100 10 5 5 0 000-10z" />
           <circle cx="12" cy="12" r="2" fill="var(--primary-20)"/>
         </svg>
       </div>
 
-      <p class="text-sm md:text-lg font-bold uppercase tracking-widest mb-1 text-shadow-custom" style="color: var(--primary-20);">
+      <p class="text-lg md:text-2xl font-bold uppercase tracking-widest mb-2 text-shadow-custom" style="color: var(--primary-20);">
         Proudly Made in India
       </p>
       
-      <h1 class="text-3xl md:text-5xl font-extrabold uppercase text-shadow-custom leading-tight mb-4">
+      <h1 class="text-3xl md:text-6xl font-extrabold uppercase text-shadow-custom leading-tight mb-6">
         Support Local <br> <span class="text-white opacity-80">Innovation</span>
       </h1>
 
-      <!-- Main Actions -->
-      <div class="flex flex-col sm:flex-row space-y-3 sm:space-y-0 sm:space-x-4 w-full justify-center items-center mb-8">
+      <p class="text-sm md:text-lg font-medium mb-10 text-shadow-custom opacity-90 leading-relaxed max-w-lg">
+        Namaste! We are a small team dedicated to creating meaningful digital experiences. We are on a mission to make India <strong>Atmanirbhar</strong> in the digital world. Be <strong>Vocal for Local</strong>—your support helps us build a stronger, digital India together.
+      </p>
+
+      <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 w-full justify-center items-center">
+        <!-- Play Store Link -->
         <a
-          href="market://details?id=com.anahata.browser_default"
           id="playstore-link"
-          class="cta-primary w-full sm:w-auto text-sm md:text-base font-black py-4 px-10 rounded-full shadow-2xl flex items-center justify-center"
+          class="cta-primary w-full sm:w-auto text-sm md:text-lg font-black py-4 px-8 rounded-full shadow-2xl flex items-center justify-center"
         >
+          <svg class="w-6 h-6 mr-2" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M3,20.5V3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.61 3,21.09 3,20.5M16.81,15.12L18.66,14.05C20.44,13.03 20.44,10.97 18.66,9.95L16.81,8.88L14.4,11.29L16.81,15.12M4.54,2.85L15.4,13.71L13.69,12L4.54,2.85M4.54,21.15L13.69,12L15.4,10.29L4.54,21.15Z" />
+          </svg>
           RATE ON PLAYSTORE
         </a>
+
+        <!-- Share Link -->
         <a
-          id="basic-share-btn"
-          href="whatsapp://send?text=Namaste! Support local Indian innovation. Check out this app: https://play.google.com/store/apps/details?id=com.anahata.browser_default"
-          class="cta-secondary w-full sm:w-auto text-sm md:text-base font-bold py-4 px-10 rounded-full flex items-center justify-center"
+          href="whatsapp://send?text=Namaste! I'm supporting local Indian innovation by using this amazing app from Anahata Software. Check it out and support Atmanirbhar Bharat: https://play.google.com/store/apps/details?id=YOUR_PACKAGE_NAME"
+          class="cta-secondary w-full sm:w-auto text-sm md:text-lg font-bold py-4 px-8 rounded-full flex items-center justify-center"
         >
-          SHARE APP
+          <svg class="w-5 h-5 mr-3" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+          </svg>
+          SHARE WITH FRIENDS
         </a>
       </div>
 
-      <!-- ✨ AI FEATURES SECTION -->
-      <div class="w-full space-y-4">
-        
-        <!-- Grid for Small AI Features -->
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <!-- Feature 1: AI Shout-out -->
-          <div class="glass-card p-5 text-left flex flex-col h-full">
-            <div class="flex items-center justify-between mb-3">
-              <h3 class="text-sm font-bold flex items-center gap-2">✨ AI Shout-out</h3>
-              <div id="shoutout-loader" class="loader"></div>
-            </div>
-            <div id="shoutout-output" class="text-xs italic opacity-80 mb-4 hidden border-l-2 border-primary-20 pl-3 py-1 flex-grow"></div>
-            <div class="mt-auto flex gap-2">
-              <button id="gen-shoutout-btn" class="text-[10px] font-bold uppercase tracking-wider bg-white/10 hover:bg-white/20 py-2 px-3 rounded-lg transition-all">Generate</button>
-              <a id="share-shoutout-link" class="hidden text-[10px] font-bold uppercase bg-green-600/80 py-2 px-3 rounded-lg">Send</a>
-            </div>
-          </div>
-
-          <!-- Feature 2: AI Review Draft -->
-          <div class="glass-card p-5 text-left flex flex-col h-full">
-            <div class="flex items-center justify-between mb-3">
-              <h3 class="text-sm font-bold flex items-center gap-2">✨ AI Review Draft</h3>
-              <div id="review-loader" class="loader"></div>
-            </div>
-            <div id="review-output" class="text-xs opacity-80 mb-4 hidden border-l-2 border-white/20 pl-3 py-1 flex-grow"></div>
-            <div class="mt-auto flex gap-2">
-              <button id="gen-review-btn" class="text-[10px] font-bold uppercase tracking-wider bg-white/10 hover:bg-white/20 py-2 px-3 rounded-lg transition-all">Draft</button>
-              <button id="copy-review-btn" class="hidden text-[10px] font-bold uppercase bg-primary-20 text-black py-2 px-3 rounded-lg">Copy</button>
-            </div>
-          </div>
-        </div>
-
-        <!-- Feature 3: ✨ AI Feature Brainstormer -->
-        <div class="glass-card p-6 text-left border-t-2 border-primary-20/30">
-          <div class="flex items-center justify-between mb-2">
-            <h3 class="text-sm md:text-base font-bold flex items-center gap-2 text-primary-20">
-              ✨ AI Feature Brainstormer
-            </h3>
-            <div id="brainstorm-loader" class="loader"></div>
-          </div>
-          <p class="text-[10px] md:text-xs opacity-60 mb-4">Have an idea to make this app better? Type it roughly below, and AI will build a professional proposal for our roadmap!</p>
-          
-          <div class="relative mb-4">
-            <input 
-              id="idea-input"
-              type="text" 
-              placeholder="e.g., add a dark mode or offline support..."
-              class="w-full bg-white/5 border border-white/10 rounded-xl py-3 px-4 text-xs md:text-sm focus:outline-none focus:border-primary-20/50 transition-all"
-            >
-            <button id="gen-brainstorm-btn" class="absolute right-2 top-2 bottom-2 bg-primary-20 text-black text-[10px] font-black px-4 rounded-lg hover:scale-105 transition-transform">
-              REFINE ✨
-            </button>
-          </div>
-
-          <div id="brainstorm-output" class="hidden bg-black/40 rounded-xl p-4 border border-white/5 mb-2 max-h-48 overflow-y-auto custom-scrollbar">
-            <div id="brainstorm-content" class="text-xs leading-relaxed opacity-90 whitespace-pre-line"></div>
-          </div>
-          <button id="copy-brainstorm-btn" class="hidden text-[10px] font-bold uppercase bg-white/10 py-2 px-4 rounded-lg w-full">Copy Proposal for Developers</button>
-        </div>
-
-      </div>
-
-      <!-- Footer Elements -->
-      <div class="mt-12 flex flex-col items-center">
-        <div class="flex space-x-2 text-2xl md:text-3xl mb-4" style="color: var(--indian-saffron);">
-          <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
-        </div>
-        <p class="text-[10px] uppercase tracking-[0.2em] opacity-40 font-bold">Vocal for Local • Atmanirbhar Bharat</p>
+      <!-- Rating Stars - Explicit Margin Top -->
+      <div class="mt-10 md:mt-16 flex space-x-3 star-rating text-3xl md:text-5xl" style="color: var(--indian-saffron);">
+        <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
       </div>
 
     </div>
@@ -251,139 +178,41 @@
         <div class="flex-1 bg-[#138808]"></div>
     </div>
 
-    <div class="absolute bottom-6 left-1/2 -translate-x-1/2 text-white text-[10px] font-semibold tracking-widest opacity-40 z-20 text-center w-full">
+    <div class="absolute bottom-6 left-1/2 -translate-x-1/2 text-white text-[10px] md:text-sm font-semibold tracking-widest opacity-60 z-20 text-center w-full px-4">
       BHARAT MEIN NIRMIT ❤️ BY ANAHATA SOFTWARE
     </div>
   </div>
 
   <script>
-    const apiKey = ""; 
-    const appId = "com.anahata.browser_default";
+    const playStoreLink = document.getElementById('playstore-link');
+    const appId = "com.anahata.browser_default"; // Replace with your actual package name
 
-    // Reusable Gemini Call with Exponential Backoff
-    async function callGemini(systemPrompt, userPrompt, retries = 5, delay = 1000) {
-      const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${apiKey}`;
-      const payload = {
-        contents: [{ parts: [{ text: userPrompt }] }],
-        systemInstruction: { parts: [{ text: systemPrompt }] }
-      };
-
-      for (let i = 0; i < retries; i++) {
-        try {
-          const res = await fetch(url, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(payload)
-          });
-          if (!res.ok) throw new Error();
-          const data = await res.json();
-          return data.candidates?.[0]?.content?.parts?.[0]?.text;
-        } catch (e) {
-          if (i === retries - 1) throw e;
-          await new Promise(r => setTimeout(r, delay));
-          delay *= 2;
-        }
-      }
-    }
-
-    // --- Feature 1: Shout-out ---
-    const genShoutBtn = document.getElementById('gen-shoutout-btn');
-    const shoutOutput = document.getElementById('shoutout-output');
-    const shoutLoader = document.getElementById('shoutout-loader');
-    const shareShoutLink = document.getElementById('share-shoutout-link');
-
-    genShoutBtn.onclick = async () => {
-      shoutLoader.style.display = 'block';
-      genShoutBtn.disabled = true;
-      try {
-        const msg = await callGemini(
-          "Generate a 1-line enthusiastic WhatsApp message supporting an Indian app by 'Anahata Software'. Use 🇮🇳 and ✨.",
-          "Write a message for my friends."
-        );
-        shoutOutput.innerText = `"${msg.trim()}"`;
-        shoutOutput.classList.remove('hidden');
-        shareShoutLink.classList.remove('hidden');
-        shareShoutLink.href = `whatsapp://send?text=${encodeURIComponent(msg.trim() + " Support local: https://play.google.com/store/apps/details?id=" + appId)}`;
-      } finally {
-        shoutLoader.style.display = 'none';
-        genShoutBtn.disabled = false;
-      }
-    };
-
-    // --- Feature 2: Review Draft ---
-    const genReviewBtn = document.getElementById('gen-review-btn');
-    const reviewOutput = document.getElementById('review-output');
-    const reviewLoader = document.getElementById('review-loader');
-    const copyReviewBtn = document.getElementById('copy-review-btn');
-
-    genReviewBtn.onclick = async () => {
-      reviewLoader.style.display = 'block';
-      genReviewBtn.disabled = true;
-      try {
-        const review = await callGemini(
-          "Draft a 2-sentence positive app review. Focus on the value of supporting Indian software. Keep it professional.",
-          "Draft a review."
-        );
-        reviewOutput.innerText = review.trim();
-        reviewOutput.classList.remove('hidden');
-        copyReviewBtn.classList.remove('hidden');
-      } finally {
-        reviewLoader.style.display = 'none';
-        genReviewBtn.disabled = false;
-      }
-    };
-
-    // --- Feature 3: Brainstormer ---
-    const ideaInput = document.getElementById('idea-input');
-    const brainstormBtn = document.getElementById('gen-brainstorm-btn');
-    const brainstormOutput = document.getElementById('brainstorm-output');
-    const brainstormContent = document.getElementById('brainstorm-content');
-    const brainstormLoader = document.getElementById('brainstorm-loader');
-    const copyBrainstormBtn = document.getElementById('copy-brainstorm-btn');
-
-    brainstormBtn.onclick = async () => {
-      if (!ideaInput.value.trim()) return;
+    playStoreLink.addEventListener('click', function(e) {
+      e.preventDefault(); // Stop standard navigation to handle it via JS
       
-      brainstormLoader.style.display = 'block';
-      brainstormBtn.disabled = true;
-      try {
-        const proposal = await callGemini(
-          "You are a Product Manager for Anahata Software. A user has a rough idea. Turn it into a professional feature proposal. Include: 1. Feature Name, 2. Why it helps users, 3. How it fits the 'Made in India' theme. Keep it concise (max 150 words).",
-          `The user idea is: ${ideaInput.value}`
-        );
-        brainstormContent.innerText = proposal.trim();
-        brainstormOutput.classList.remove('hidden');
-        copyBrainstormBtn.classList.remove('hidden');
-      } finally {
-        brainstormLoader.style.display = 'none';
-        brainstormBtn.disabled = false;
-      }
-    };
+      const marketUrl = "market://details?id=" + appId;
+      const webUrl = "https://play.google.com/store/apps/details?id=" + appId;
+      
+      // Try opening the market URI
+      window.location.href = marketUrl;
 
-    // Copy Logic
-    function copyToClipboard(element, btn) {
-      const textArea = document.createElement("textarea");
-      textArea.value = element.innerText;
-      document.body.appendChild(textArea);
-      textArea.select();
-      document.execCommand('copy');
-      document.body.removeChild(textArea);
-      const originalText = btn.innerText;
-      btn.innerText = "COPIED ✅";
-      setTimeout(() => btn.innerText = originalText, 2000);
-    }
-
-    copyReviewBtn.onclick = () => copyToClipboard(reviewOutput, copyReviewBtn);
-    copyBrainstormBtn.onclick = () => copyToClipboard(brainstormContent, copyBrainstormBtn);
-
-    // Original Link Logic
-    document.getElementById('playstore-link').addEventListener('click', function(e) {
+      // Fallback: If the page hasn't blurred (app hasn't opened) in 1 second, open web link
       const start = Date.now();
-      setTimeout(function() {
-        if (Date.now() - start < 1500 && !document.hidden) {
-          window.location.href = "https://play.google.com/store/apps/details?id=" + appId;
+      const checkFallback = setInterval(function() {
+        const now = Date.now();
+        if (now - start > 1200) {
+          clearInterval(checkFallback);
+          // If the user is still on this page, the market:// link failed
+          if (!document.hidden) {
+            window.location.href = webUrl;
+          }
         }
-      }, 1000);
+      }, 100);
+
+      // Clear interval if user leaves the page
+      window.onblur = function() {
+        clearInterval(checkFallback);
+      };
     });
   </script>
 </body>
