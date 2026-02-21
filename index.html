@@ -158,10 +158,10 @@
       </p>
 
       <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 w-full justify-center items-center">
-        <!-- Play Store Link -->
+        <!-- Play Store Link: Updated to market:// for direct app navigation -->
         <a
-          href="https://play.google.com/store/apps/details?id=YOUR_PACKAGE_NAME"
-          target="_blank"
+          href="market://details?id=YOUR_PACKAGE_NAME"
+          id="playstore-link"
           class="cta-primary w-full sm:w-auto text-sm md:text-lg font-black py-4 px-8 rounded-full shadow-2xl flex items-center justify-center"
         >
           <svg class="w-6 h-6 mr-2" viewBox="0 0 24 24" fill="currentColor">
@@ -200,5 +200,25 @@
       BHARAT MEIN NIRMIT ❤️ BY ANAHATA SOFTWARE
     </div>
   </div>
+
+  <script>
+    // Robust Intent Handling:
+    // If market:// fails (e.g., on a desktop browser or non-Android device),
+    // we fallback to the standard HTTPS link after a short delay.
+    const playStoreLink = document.getElementById('playstore-link');
+    const appId = "YOUR_PACKAGE_NAME"; // Replace with your actual package name
+
+    playStoreLink.addEventListener('click', function(e) {
+      const fallbackUrl = "https://play.google.com/store/apps/details?id=" + appId;
+      
+      // Timer to check if the app opened (and the page blurred)
+      const start = Date.now();
+      setTimeout(function() {
+        if (Date.now() - start < 1500 && !document.hidden) {
+          window.location.href = fallbackUrl;
+        }
+      }, 1000);
+    });
+  </script>
 </body>
 </html>
