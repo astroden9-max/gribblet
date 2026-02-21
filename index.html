@@ -40,7 +40,7 @@
       justify-content: center;
       align-items: center;
       color: white;
-      padding: 2rem 1rem;
+      padding: 2rem 1rem 5rem 1rem; /* Added bottom padding for footer clearance */
     }
 
     .pattern-overlay {
@@ -102,14 +102,15 @@
       filter: drop-shadow(0 0 12px var(--indian-saffron));
     }
 
+    /* Fixed to bottom to ensure visibility on all screen sizes */
     .tricolor-footer {
-      position: absolute;
+      position: fixed;
       bottom: 0;
       left: 0;
       width: 100%;
-      height: 4px;
+      height: 6px; /* Slightly thicker for better visibility */
       display: flex;
-      z-index: 20;
+      z-index: 50;
     }
   </style>
 </head>
@@ -154,7 +155,7 @@
 
         <!-- Share Link -->
         <a
-          href="whatsapp://send?text=Namaste! I'm supporting local Indian innovation by using this amazing app from Anahata Software. Check it out and support Atmanirbhar Bharat: https://play.google.com/store/apps/details?id=YOUR_PACKAGE_NAME"
+          href="whatsapp://send?text=Namaste! I'm supporting local Indian innovation by using this amazing app from Anahata Software. Check it out and support Atmanirbhar Bharat: https://play.google.com/store/apps/details?id=com.anahata.browser_default"
           class="cta-secondary w-full sm:w-auto text-sm md:text-lg font-bold py-4 px-8 rounded-full flex items-center justify-center"
         >
           <svg class="w-5 h-5 mr-3" fill="currentColor" viewBox="0 0 24 24">
@@ -178,38 +179,34 @@
         <div class="flex-1 bg-[#138808]"></div>
     </div>
 
-    <div class="absolute bottom-6 left-1/2 -translate-x-1/2 text-white text-[10px] md:text-sm font-semibold tracking-widest opacity-60 z-20 text-center w-full px-4">
+    <div class="absolute bottom-8 left-1/2 -translate-x-1/2 text-white text-[10px] md:text-sm font-semibold tracking-widest opacity-60 z-20 text-center w-full px-4">
       BHARAT MEIN NIRMIT ❤️ BY ANAHATA SOFTWARE
     </div>
   </div>
 
   <script>
     const playStoreLink = document.getElementById('playstore-link');
-    const appId = "com.anahata.browser_default"; // Replace with your actual package name
+    const appId = "com.anahata.browser_default";
 
     playStoreLink.addEventListener('click', function(e) {
-      e.preventDefault(); // Stop standard navigation to handle it via JS
+      e.preventDefault();
       
       const marketUrl = "market://details?id=" + appId;
       const webUrl = "https://play.google.com/store/apps/details?id=" + appId;
       
-      // Try opening the market URI
       window.location.href = marketUrl;
 
-      // Fallback: If the page hasn't blurred (app hasn't opened) in 1 second, open web link
       const start = Date.now();
       const checkFallback = setInterval(function() {
         const now = Date.now();
         if (now - start > 1200) {
           clearInterval(checkFallback);
-          // If the user is still on this page, the market:// link failed
           if (!document.hidden) {
             window.location.href = webUrl;
           }
         }
       }, 100);
 
-      // Clear interval if user leaves the page
       window.onblur = function() {
         clearInterval(checkFallback);
       };
