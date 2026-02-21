@@ -69,6 +69,7 @@
       position: relative;
       overflow: hidden;
       transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      cursor: pointer;
     }
 
     .cta-primary:hover {
@@ -158,9 +159,8 @@
       </p>
 
       <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 w-full justify-center items-center">
-        <!-- Play Store Link: Updated to market:// for direct app navigation -->
+        <!-- Play Store Link -->
         <a
-          href="market://details?id=YOUR_PACKAGE_NAME"
           id="playstore-link"
           class="cta-primary w-full sm:w-auto text-sm md:text-lg font-black py-4 px-8 rounded-full shadow-2xl flex items-center justify-center"
         >
@@ -202,22 +202,35 @@
   </div>
 
   <script>
-    // Robust Intent Handling:
-    // If market:// fails (e.g., on a desktop browser or non-Android device),
-    // we fallback to the standard HTTPS link after a short delay.
     const playStoreLink = document.getElementById('playstore-link');
     const appId = "YOUR_PACKAGE_NAME"; // Replace with your actual package name
 
     playStoreLink.addEventListener('click', function(e) {
-      const fallbackUrl = "https://play.google.com/store/apps/details?id=" + appId;
+      e.preventDefault(); // Stop standard navigation to handle it via JS
       
-      // Timer to check if the app opened (and the page blurred)
+      const marketUrl = "market://details?id=" + appId;
+      const webUrl = "https://play.google.com/store/apps/details?id=" + appId;
+      
+      // Try opening the market URI
+      window.location.href = marketUrl;
+
+      // Fallback: If the page hasn't blurred (app hasn't opened) in 1 second, open web link
       const start = Date.now();
-      setTimeout(function() {
-        if (Date.now() - start < 1500 && !document.hidden) {
-          window.location.href = fallbackUrl;
+      const checkFallback = setInterval(function() {
+        const now = Date.now();
+        if (now - start > 1200) {
+          clearInterval(checkFallback);
+          // If the user is still on this page, the market:// link failed
+          if (!document.hidden) {
+            window.location.href = webUrl;
+          }
         }
-      }, 1000);
+      }, 100);
+
+      // Clear interval if user leaves the page
+      window.onblur = function() {
+        clearInterval(checkFallback);
+      };
     });
   </script>
 </body>
