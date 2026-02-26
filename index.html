@@ -3,22 +3,35 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Advertise with Us - Place Your Ads on Our App!</title>
+  <title>Support Us - Rate Our App on Play Store</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
   <style>
-    body {
+    :root {
+      --primary-90: #195073; /* Deep ocean blue */
+      --primary-80: #3F6E73; /* Slate teal */
+      --primary-40: #698C7B; /* Desaturated green */
+      --primary-30: #88A889; /* Soft sage */
+      --primary-20: #ABBF84; /* Dusty lime green */
+      --primary-10: #0D0D0D; /* Near black */
+      --indian-saffron: #FF9933;
+      --indian-green: #138808;
+    }
+
+        body {
       font-family: 'Montserrat', sans-serif;
       margin: 0;
       padding: 0;
       overflow: hidden;
+      background-color: var(--primary-10);
     }
 
     .full-screen-bg {
       position: relative;
       width: 100vw;
       height: 100vh;
-      background-image: url('./assets/images/coming_soon.png');
+      background: linear-gradient(135deg, var(--primary-90) 0%, var(--primary-10) 100%);
+      background-image: url('https://images.unsplash.com/photo-1524492707947-2f85a514d715?q=80&w=1080&auto=format&fit=crop');
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
@@ -27,65 +40,151 @@
       justify-content: center;
       align-items: center;
       color: white;
-      transition: background-image 0.5s ease;
     }
 
-    /* ✅ Switch background for landscape orientation */
-    @media (orientation: landscape) {
-      .full-screen-bg {
-        background-image: url('./assets/images/coming_soon_land.png');
-      }
+    .pattern-overlay {
+      position: absolute;
+      inset: 0;
+      background-image: url('https://www.transparenttextures.com/patterns/padded-cells.png');
+      opacity: 0.05;
+      pointer-events: none;
+      z-index: 2;
+    }
+
+    .overlay {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at center, rgba(25, 80, 115, 0.3) 0%, rgba(13, 13, 13, 0.9) 100%);
+      z-index: 1;
+    }
+
+    .glass-card {
+      background: rgba(255, 255, 255, 0.03);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 2rem;
     }
 
     .text-shadow-custom {
-      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+      text-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
     }
 
-    .cta-button {
+    .cta-primary {
+      background-color: var(--primary-20);
+      color: var(--primary-10);
+      position: relative;
+      overflow: hidden;
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    .cta-primary:hover {
+      background-color: var(--primary-30);
+      transform: translateY(-5px);
+      box-shadow: 0 15px 30px rgba(171, 191, 132, 0.3);
+    }
+
+  
+    .cta-secondary {
+      border: 2px solid rgba(255, 255, 255, 0.2);
+      color: white;
       transition: all 0.3s ease;
     }
 
-    .cta-button:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    .cta-secondary:hover {
+      background-color: rgba(255, 255, 255, 0.1);
+      border-color: var(--primary-40);
+      transform: translateY(-3px);
+    }
+
+    .star-rating span {
+      transition: transform 0.2s ease;
+      display: inline-block;
+      cursor: default;
+    }
+
+    .star-rating:hover span {
+      transform: scale(1.2);
+      color: var(--indian-saffron);
+      filter: drop-shadow(0 0 12px var(--indian-saffron));
+    }
+
+    .tricolor-footer {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      display: flex;
+      z-index: 20;
     }
   </style>
 </head>
 <body>
   <div class="full-screen-bg">
-    <div class="flex flex-col items-center justify-center text-center z-10 p-4 ">
-      <p class="text-xl md:text-2xl font-semibold uppercase tracking-wide mb-3 text-shadow-custom mt-12">
-        REACH OUR AUDIENCE
+    <div class="overlay"></div>
+    <div class="pattern-overlay"></div>
+
+    <div class="relative flex flex-col items-center justify-center text-center z-10 p-6 max-w-2xl">
+      
+      <!-- Cultural Icon -->
+      <div class="mb-6 animate-pulse">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-20 w-20" fill="none" viewBox="0 0 24 24" stroke="var(--primary-20)" stroke-width="1.5">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364l-.707.707M6.343 17.657l-.707.707m12.728 0l-.707-.707M6.343 6.343l-.707-.707M12 7a5 5 0 100 10 5 5 0 000-10z" />
+          <circle cx="12" cy="12" r="2" fill="var(--primary-20)"/>
+        </svg>
+      </div>
+
+      <p class="text-xl md:text-2xl font-bold uppercase tracking-widest mb-2 text-shadow-custom" style="color: var(--primary-20);">
+        Proudly Made in India
       </p>
-      <h1 class="text-4xl md:text-6xl lg:text-7xl font-extrabold uppercase text-shadow-custom leading-tight mb-6">
-        Place Your Ads <br> on Our App
+      
+      <h1 class="text-4xl md:text-6xl font-extrabold uppercase text-shadow-custom leading-tight mb-6">
+        Support Local <br> <span class="text-white opacity-80">Innovation</span>
       </h1>
 
-      <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 mt-4">
-     <a
-  href="mailto:anahata.software@gmail.com?subject=Advertising%20Inquiry%20-%20App%20Ad%20Space&body=Hello%20Anahata%20Team,%0D%0A%0D%0AI%20am%20interested%20in%20placing%20an%20ad%20on%20your%20app.%20Please%20provide%20details%20about%20pricing,%20available%20slots,%20and%20ad%20formats.%0D%0A%0D%0AAdvertiser%20Name:%0D%0ACompany:%0D%0AContact%20Number:%0D%0AEmail:%0D%0A%0D%0AThank%20you!"
-  class="cta-button bg-white hover:bg-red-600 text-red-700 hover:text-white text-base md:text-lg font-bold py-2.5 px-6 rounded-full shadow-lg"
->
-          Inquire About Ad Space
-        </a>
-<a href="ad_details.html"
-          class="cta-button bg-gray-800 hover:bg-gray-700 text-white text-base md:text-lg font-bold py-2.5 px-6 rounded-full shadow-lg"
+      <p class="text-base md:text-lg font-medium mb-10 text-shadow-custom opacity-90 leading-relaxed">
+        Namaste! We are building world-class tech inspired by Indian culture. <br class="hidden md:block">
+        Help us grow by rating us on the Play Store.
+      </p>
+
+      <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-6">
+        <!-- Play Store Link -->
+
+        <a
+           href="market://details?id=com.anahata.browser_default"
+          class="cta-primary text-base md:text-lg font-black py-4 px-10 rounded-full shadow-2xl flex items-center justify-center"
         >
-          See Ad Examples
+          <svg class="w-6 h-6 mr-2" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M3,20.5V3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.61 3,21.09 3,20.5M16.81,15.12L18.66,14.05C20.44,13.03 20.44,10.97 18.66,9.95L16.81,8.88L14.4,11.29L16.81,15.12M4.54,2.85L15.4,13.71L13.69,12L4.54,2.85M4.54,21.15L13.69,12L15.4,10.29L4.54,21.15Z" />
+          </svg>
+          RATE US ON PLAYSTORE
+        </a>
+
+        <!-- Feedback Link -->
+        <a 
+          href="mailto:anahata.software@gmail.com?subject=App%20Feedback&body=Namaste%20Anahata%20Team,%0D%0A%0D%0AI%20have%20feedback%20for%20your%20app:%0D%0A%0D%0A[Your%20Feedback]"
+          class="cta-secondary text-base md:text-lg font-bold py-4 px-10 rounded-full shadow-lg"
+        >
+          SEND FEEDBACK
         </a>
       </div>
 
- <p class="text-sm md:text-base font-medium mt-6 text-shadow-custom opacity-95">
-  Launch your campaign or promote your brand with us. <br>
-  🎉 Limited free promotion slots available for early partners — grab yours today!
-</p>
-
+      <div class="mt-12 flex space-x-2 star-rating text-3xl">
+        <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+      </div>
 
     </div>
-<div
-      class="absolute bottom-6 left-1/2 -translate-x-1/2 text-white text-sm md:text-base font-semibold tracking-wider opacity-90 z-20"
-    >
-      CONTACT US: anahata.software@gmail.com
+
+    <!-- Tricolor line -->
+    <div class="tricolor-footer">
+        <div class="flex-1 bg-[#FF9933]"></div>
+        <div class="flex-1 bg-[#FFFFFF]"></div>
+        <div class="flex-1 bg-[#138808]"></div>
+    </div>
+
+    <div class="absolute bottom-6 left-1/2 -translate-x-1/2 text-white text-xs md:text-sm font-semibold tracking-widest opacity-60 z-20 text-center w-full px-4">
+      BHARAT MEIN NIRMIT ❤️ BY ANAHATA SOFTWARE
     </div>
   </div>
 </body>
