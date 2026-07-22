@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>UNCENSORED GROUND FOOTAGE: Independent Media Network</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Montserrat', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #000000; /* Pure black out style */
+        }
+
+        .blackout-bg {
+            position: relative;
+            width: 100vw;
+            min-height: 100vh;
+            /* Stark dark gradient layering matching the homepage */
+            background-image: linear-gradient(rgba(0, 0, 0, 0.94), rgba(0, 0, 0, 0.99)), url('./assets/images/blackout_crackdown.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            display: flex;
+            flex-direction: column;
+            color: white;
+        }
+
+        .text-shadow-emergency {
+            text-shadow: 0px 0px 12px rgba(220, 38, 38, 0.7);
+        }
+
+        .action-btn {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .action-btn:hover {
+            transform: scale(1.02);
+            box-shadow: 0 0 20px rgba(220, 38, 38, 0.6);
+        }
+
+        .media-card {
+            transition: all 0.2s ease-in-out;
+        }
+        .media-card:hover {
+            border-color: #dc2626; /* Red-600 */
+            background-color: rgba(24, 24, 27, 0.95); /* Slightly brighter zinc */
+        }
+    </style>
+</head>
+<body>
+    <div class="blackout-bg p-4 sm:p-6 pb-24">
+        
+        <!-- Header / Navigation section -->
+        <div class="w-full max-w-6xl mx-auto pt-4 mb-4 flex justify-between items-center text-xs font-black uppercase tracking-widest">
+            <a href="../index.html" class="text-zinc-400 hover:text-white transition-colors">
+                ← Main Dashboard
+            </a>
+            <a href="independent_creators.html" class="text-red-500 hover:text-red-400 transition-colors">
+                Switch to Creators Network →
+            </a>
+        </div>
+
+        <div class="flex flex-col items-center justify-center text-center z-10 max-w-6xl mx-auto w-full pt-4">
+            
+            <!-- Alert Badge -->
+            <span class="bg-zinc-900 text-red-500 text-xs md:text-sm font-black uppercase tracking-widest px-5 py-2 rounded-none border border-red-600 mb-6">
+                🔴 DIRECTORY: BYPASSING THE MAINSTREAM BLINDSPOT
+            </span>
+            
+            <h1 class="text-4xl sm:text-5xl md:text-6xl font-black uppercase tracking-tighter text-white leading-none mb-4">
+                INDEPENDENT <span class="text-red-600 text-shadow-emergency">GROUND TRUTH</span>
+            </h1>
+
+            <p class="text-sm md:text-base font-bold mb-12 text-gray-400 max-w-2xl mx-auto uppercase tracking-wide">
+                When television networks pull the plug, the truth moves underground. Follow these independent journalism outlets for live broadcasts, unedited cell phone footage, and student reports.
+            </p>
+
+            <!-- Media Outlets Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 w-full text-left mb-12">
+                
+                <!-- Outlet 1 -->
+                <div class="media-card bg-zinc-900/90 border-l-4 border-red-600 p-5 flex flex-col justify-between">
+                    <div>
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="text-lg font-black uppercase tracking-tight text-white">The Wire (English/Hindi)</h3>
+                            <span class="text-[10px] bg-red-600/20 text-red-400 border border-red-600 px-2 py-0.5 font-bold uppercase tracking-widest">Live Updates</span>
+                        </div>
+                        <p class="text-xs text-gray-400 font-medium leading-relaxed mb-4">
+                            In-depth investigative reporting and unfiltered digital broadcasts tracking human rights and student dissent across Delhi.
+                        </p>
+                    </div>
+                    <div class="border-t border-zinc-800 pt-3 flex flex-wrap gap-2">
+                        <a href="https://youtube.com" target="_blank" class="text-xs font-bold text-white hover:text-red-500 uppercase tracking-wider mr-3">YouTube ↗</a>
+                        <a href="https://twitter.com" target="_blank" class="text-xs font-bold text-white hover:text-red-500 uppercase tracking-wider mr-3">X (Twitter) ↗</a>
+                        <a href="https://instagram.com" target="_blank" class="text-xs font-bold text-white hover:text-red-500 uppercase tracking-wider">Instagram ↗</a>
+                    </div>
+                </div>
+
+                <!-- Outlet 2 -->
+                <div class="media-card bg-zinc-900/90 border-l-4 border-red-600 p-5 flex flex-col justify-between">
+                    <div>
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="text-lg font-black uppercase tracking-tight text-white">Mojo Story</h3>
+                            <span class="text-[10px] bg-zinc-800 text-zinc-400 border border-zinc-700 px-2 py-0.5 font-bold uppercase tracking-widest">Ground Video</span>
+                        </div>
+                        <p class="text-xs text-gray-400 font-medium leading-relaxed mb-4">
+                            Led by veteran journalists providing raw, on-the-scene video feeds from protest epicenters and hospital emergency wards.
+                        </p>
+                    </div>
+                    <div class="border-t border-zinc-800 pt-3 flex flex-wrap gap-2">
+                        <a href="https://youtube.com" target="_blank" class="text-xs font-bold text-white hover:text-red-500 uppercase tracking-wider mr-3">YouTube ↗</a>
+                        <a href="https://twitter.com" target="_blank" class="text-xs font-bold text-white hover:text-red-500 uppercase tracking-wider mr-3">X ↗</a>
+                        <a href="https://instagram.com" target="_blank" class="text-xs font-bold text-white hover:text-red-500 uppercase tracking-wider">Instagram ↗</a>
+                    </div>
+                </div>
+
+                <!-- Outlet 3 -->
+                <div class="media-card bg-zinc-900/90 border-l-4 border-red-600 p-5 flex flex-col justify-between">
+                    <div>
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="text-lg font-black uppercase tracking-tight text-white">Newslaundry</h3>
+                            <span class="text-[10px] bg-red-600/20 text-red-400 border border-red-600 px-2 py-0.5 font-bold uppercase tracking-widest">Media Watch</span>
+                        </div>
+                        <p class="text-xs text-gray-400 font-medium leading-relaxed mb-4">
+                            Actively tracking and dismantling misinformation while exposing how mainstream channels blackout public interest stories.
+                        </p>
+                    </div>
+                    <div class="border-t border-zinc-800 pt-3 flex flex-wrap gap-2">
+                        <a href="https://youtube.com" target="_blank" class="text-xs font-bold text-white hover:text-red-500 uppercase tracking-wider mr-3">YouTube ↗</a>
+                        <a href="https://twitter.com" target="_blank" class="text-xs font-bold text-white hover:text-red-500 uppercase tracking-wider mr-3">X ↗</a>
+                        <a href="https://instagram.com" target="_blank" class="text-xs font-bold text-white hover:text-red-500 uppercase tracking-wider">Instagram ↗</a>
+                    </div>
+                </div>
+
+                <!-- Outlet 4 -->
+                <div class="media-card bg-zinc-900/90 border-l-4 border-zinc-500 p-5 flex flex-col justify-between">
+                    <div>
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="text-lg font-black uppercase tracking-tight text-zinc-300">Article 14</h3>
+                            <span class="text-[10px] bg-zinc-800 text-zinc-400 border border-zinc-700 px-2 py-0.5 font-bold uppercase tracking-widest">Legal Status</span>
+                        </div>
+                        <p class="text-xs text-gray-400 font-medium leading-relaxed mb-4">
+                            Focusing on law, police excesses, and constitutional rights. Tracks illegal detentions of student leaders on the ground.
+                        </p>
+                    </div>
+                    <div class="border-t border-zinc-800 pt-3 flex flex-wrap gap-2">
+                        <a href="https://twitter.com" target="_blank" class="text-xs font-bold text-white hover:text-red-500 uppercase tracking-wider mr-3">X (Twitter) ↗</a>
+                        <a href="https://instagram.com" target="_blank" class="text-xs font-bold text-white hover:text-red-500 uppercase tracking-wider">Instagram ↗</a>
+                    </div>
+                </div>
+
+                <!-- Outlet 5 -->
+                <div class="media-card bg-zinc-900/90 border-l-4 border-zinc-500 p-5 flex flex-col justify-between">
+                    <div>
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="text-lg font-black uppercase tracking-tight text-zinc-300">The Quint</h3>
+                            <span class="text-[10px] bg-zinc-800 text-zinc-400 border border-zinc-700 px-2 py-0.5 font-bold uppercase tracking-widest">Fact Checks</span>
+                        </div>
+                        <p class="text-xs text-gray-400 font-medium leading-relaxed mb-4">
+                            Running real-time citizen-journalism verification lines to separate real violence updates from state narrative drops.
+                        </p>
+                    </div>
+                    <div class="border-t border-zinc-800 pt-3 flex flex-wrap gap-2">
+                        <a href="https://youtube.com" target="_blank" class="text-xs font-bold text-white hover:text-red-500 uppercase tracking-wider mr-3">YouTube ↗</a>
+                        <a href="https://twitter.com" target="_blank" class="text-xs font-bold text-white hover:text-red-500 uppercase tracking-wider mr-3">X ↗</a>
+                    </div>
+                </div>
+
+                <!-- Outlet 6 -->
+                <div class="media-card bg-zinc-900/90 border-l-4 border-zinc-500 p-5 flex flex-col justify-between">
+                    <div>
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="text-lg font-black uppercase tracking-tight text-zinc-300">Independent Student Feeds</h3>
+                            <span class="text-[10px] bg-zinc-800 text-red-500 border border-red-950 px-2 py-0.5 font-bold uppercase tracking-widest">Raw Footage</span>
+                        </div>
+                        <p class="text-xs text-gray-400 font-medium leading-relaxed mb-4">
+                            Decentralized handles and live broadcast spaces operated directly by students facing blockades at Raisina Road.
+                        </p>
+                    </div>
+                    <div class="border-t border-zinc-800 pt-3 flex flex-wrap gap-2">
+                        <a href="https://telegram.org" target="_blank" class="text-xs font-bold text-white hover:text-red-500 uppercase tracking-wider mr-3">Telegram Broadcast ↗</a>
+                        <a href="https://twitter.com" target="_blank" class="text-xs font-bold text-white hover:text-red-500 uppercase tracking-wider">X Hashtag ↗</a>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Warning/Instruction box -->
+            <div class="w-full max-w-3xl border border-zinc-800 bg-zinc-950/60 p-4 text-center mb-6">
+                <p class="text-xs font-bold uppercase tracking-widest text-zinc-400">
+                    ⚠️ Note: If streaming platforms drop, fallback secure channels will be instantly pushed to our Telegram broadcasts. Keep pages bookmarked.
+                </p>
+            </div>
+
+            <!-- Action buttons to cross-navigate -->
+            <div class="flex flex-col sm:flex-row w-full sm:w-auto space-y-3 sm:space-y-0 sm:space-x-4 px-4 sm:px-0">
+                <a href="../index.html"
+                   class="action-btn w-full sm:w-auto text-center bg-white hover:bg-red-600 text-black hover:text-white text-sm font-black uppercase py-3 px-8 rounded-none tracking-wide">
+                    ← Back to Dashboard
+                </a>
+                <a href="independent_creators.html"
+                   class="action-btn w-full sm:w-auto text-center bg-transparent border border-zinc-700 text-zinc-400 hover:text-white text-sm font-bold py-3 px-8 rounded-none tracking-wide">
+                    View Individual Creators
+                </a>
+            </div>
+
+        </div>
+
+        <!-- Bottom Footer Layered exactly like Main page -->
+        <div class="absolute bottom-4 left-1/2 -translate-x-1/2 text-zinc-600 text-xs font-bold tracking-widest text-center w-full px-4 z-20 uppercase">
+            Stand With Indian Students • Secure Coordination via: <span class="text-zinc-400">anahata.software@gmail.com</span>
+        </div>
+    </div>
+</body>
+</html>
