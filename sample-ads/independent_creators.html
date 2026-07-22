@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>UNCENSORED VOICES: Independent Creators Network</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Montserrat', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #000000; /* Pure black out style */
+        }
+
+        .blackout-bg {
+            position: relative;
+            width: 100vw;
+            min-height: 100vh;
+            /* Matches the stark dark gradient styling of your homepage */
+            background-image: linear-gradient(rgba(0, 0, 0, 0.94), rgba(0, 0, 0, 0.99)), url('./assets/images/blackout_crackdown.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            display: flex;
+            flex-direction: column;
+            color: white;
+        }
+
+        .text-shadow-emergency {
+            text-shadow: 0px 0px 12px rgba(220, 38, 38, 0.7);
+        }
+
+        .action-btn {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .action-btn:hover {
+            transform: scale(1.02);
+            box-shadow: 0 0 20px rgba(220, 38, 38, 0.6);
+        }
+
+        .creator-card {
+            transition: all 0.2s ease-in-out;
+        }
+        .creator-card:hover {
+            border-color: #dc2626; /* Red-600 */
+            background-color: rgba(24, 24, 27, 0.95); /* Slightly brighter zinc */
+        }
+    </style>
+</head>
+<body>
+    <div class="blackout-bg p-4 sm:p-6 pb-24">
+        
+        <!-- Top Navigation -->
+        <div class="w-full max-w-6xl mx-auto pt-4 mb-4">
+            <a href="../index.html" class="inline-flex items-center text-zinc-400 hover:text-white text-xs font-black uppercase tracking-widest transition-colors">
+                ← Return to Emergency Dashboard
+            </a>
+        </div>
+
+        <div class="flex flex-col items-center justify-center text-center z-10 max-w-6xl mx-auto w-full pt-4">
+            
+            <!-- Emergency Alert Label -->
+            <span class="bg-zinc-900 text-red-500 text-xs md:text-sm font-black uppercase tracking-widest px-5 py-2 rounded-none border border-red-600 mb-6">
+                🎙️ INDEPENDENT VOICES: ONE-MAN NEWSROOMS
+            </span>
+            
+            <h1 class="text-4xl sm:text-5xl md:text-6xl font-black uppercase tracking-tighter text-white leading-none mb-4">
+                THE SOLE <span class="text-red-600 text-shadow-emergency">BROADCASTERS</span>
+            </h1>
+
+            <p class="text-sm md:text-base font-bold mb-12 text-gray-400 max-w-2xl mx-auto uppercase tracking-wide">
+                When large networks choose silence, individuals with a camera and a mic become the primary source of unfiltered truth and sharp analysis.
+            </p>
+
+            <!-- Creators Grid Layout -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 w-full text-left mb-12">
+                
+                <!-- Creator 1: Akash Banerjee (The Deshbhakt) -->
+                <div class="creator-card bg-zinc-900/90 border-l-4 border-red-600 p-5 flex flex-col justify-between">
+                    <div>
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="text-lg font-black uppercase tracking-tight text-white">The Deshbhakt</h3>
+                            <span class="text-[10px] bg-red-600/20 text-red-400 border border-red-600 px-2 py-0.5 font-bold uppercase tracking-widest">Satire & Fact</span>
+                        </div>
+                        <p class="text-xs text-zinc-400 font-bold mb-2 uppercase tracking-wide">Host: Akash Banerjee</p>
+                        <p class="text-xs text-gray-300 font-medium leading-relaxed mb-4">
+                            India's premier political satire and news analysis platform, cutting through state propaganda with heavy irony and hard data.
+                        </p>
+                    </div>
+                    <div class="border-t border-zinc-800 pt-3 flex flex-wrap gap-2">
+                        <a href="https://www.youtube.com/@thedeshbhakt" target="_blank" class="text-xs font-bold text-white hover:text-red-500 uppercase tracking-wider mr-3">YouTube ↗</a>
+                        <a href="https://twitter.com/thedeshbhakt" target="_blank" class="text-xs font-bold text-white hover:text-red-500 uppercase tracking-wider mr-3">X (Twitter) ↗</a>
+                        <a href="https://www.instagram.com/akashbanerjee.in/" target="_blank" class="text-xs font-bold text-white hover:text-red-500 uppercase tracking-wider">Instagram ↗</a>
+                    </div>
+                </div>
+
+                <!-- Creator 2: Sarthak Goswami -->
+                <div class="creator-card bg-zinc-900/90 border-l-4 border-red-600 p-5 flex flex-col justify-between">
+                    <div>
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="text-lg font-black uppercase tracking-tight text-white">Sarthak Goswami</h3>
+                            <span class="text-[10px] bg-zinc-800 text-zinc-400 border border-zinc-700 px-2 py-0.5 font-bold uppercase tracking-widest">Exposés</span>
+                        </div>
+                        <p class="text-xs text-zinc-400 font-bold mb-2 uppercase tracking-wide">Host: Sarthak Goswami</p>
+                        <p class="text-xs text-gray-300 font-medium leading-relaxed mb-4">
+                            Simplifying complex socio-political crises and structural corruption issues into crisp, visual, easily digestible breakdowns.
+                        </p>
+                    </div>
+                    <div class="border-t border-zinc-800 pt-3 flex flex-wrap gap-2">
+                        <a href="https://www.youtube.com/@SundaySarthak" target="_blank" class="text-xs font-bold text-white hover:text-red-500 uppercase tracking-wider mr-3">YouTube ↗</a>
+                        <a href="https://x.com/sundaysarthak" target="_blank" class="text-xs font-bold text-white hover:text-red-500 uppercase tracking-wider">X (Twitter) ↗</a>
+                    </div>
+                </div>
+
+                <!-- Creator 3: Ravish Kumar -->
+                <div class="creator-card bg-zinc-900/90 border-l-4 border-red-600 p-5 flex flex-col justify-between">
+                    <div>
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="text-lg font-black uppercase tracking-tight text-white">Ravish Kumar Official</h3>
+                            <span class="text-[10px] bg-red-600/20 text-red-400 border border-red-600 px-2 py-0.5 font-bold uppercase tracking-widest">Ground Journalism</span>
+                        </div>
+                        <p class="text-xs text-zinc-400 font-bold mb-2 uppercase tracking-wide">Host: Ravish Kumar</p>
+                        <p class="text-xs text-gray-300 font-medium leading-relaxed mb-4">
+                            Uncompromising, deep-dive journalism addressing unemployment, structural paper leaks, and public accountability directly to millions.
+                        </p>
+                    </div>
+                    <div class="border-t border-zinc-800 pt-3 flex flex-wrap gap-2">
+                        <a href="https://www.youtube.com/@ravishkumar.official" target="_blank" class="text-xs font-bold text-white hover:text-red-500 uppercase tracking-wider mr-3">YouTube ↗</a>
+                        <a href="https://twitter.com/ravish_journo" target="_blank" class="text-xs font-bold text-white hover:text-red-500 uppercase tracking-wider">X ↗</a>
+                    </div>
+                </div>
+
+            
+
+                <!-- Creator 5: Samdish Bhatia -->
+                <div class="creator-card bg-zinc-900/90 border-l-4 border-zinc-500 p-5 flex flex-col justify-between">
+                    <div>
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="text-lg font-black uppercase tracking-tight text-zinc-300">Unfiltered by Samdish</h3>
+                            <span class="text-[10px] bg-zinc-800 text-zinc-400 border border-zinc-700 px-2 py-0.5 font-bold uppercase tracking-widest">Interviews</span>
+                        </div>
+                        <p class="text-xs text-zinc-400 font-bold mb-2 uppercase tracking-wide">Host: Samdish Bhatia</p>
+                        <p class="text-xs text-gray-300 font-medium leading-relaxed mb-4">
+                            Raw, lengthy, unedited street-level interviews and political encounters showing what everyday citizens actually feel.
+                        </p>
+                    </div>
+                    <div class="border-t border-zinc-800 pt-3 flex flex-wrap gap-2">
+                        <a href="https://www.youtube.com/@UNFILTEREDbySamdish" target="_blank" class="text-xs font-bold text-white hover:text-red-500 uppercase tracking-wider mr-3">YouTube ↗</a>
+                        <a href="https://www.instagram.com/unfiltered_bysamdish/" target="_blank" class="text-xs font-bold text-white hover:text-red-500 uppercase tracking-wider">Instagram ↗</a>
+                    </div>
+                </div>
+
+                <!-- Creator 6: Decentralized Cell Feeds -->
+                <!-- <div class="creator-card bg-zinc-900/90 border-l-4 border-zinc-500 p-5 flex flex-col justify-between">
+                    <div>
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="text-lg font-black uppercase tracking-tight text-zinc-300">Independent Podcasters</h3>
+                            <span class="text-[10px] bg-zinc-800 text-red-500 border border-red-950 px-2 py-0.5 font-bold uppercase tracking-widest">Audio Feeds</span>
+                        </div>
+                        <p class="text-xs text-zinc-400 font-bold mb-2 uppercase tracking-wide">Host: Student Union Broadcasts</p>
+                        <p class="text-xs text-gray-300 font-medium leading-relaxed mb-4">
+                            Aggregated voice notes and real-time audio rooms tracking police movements and containment parameters around the protest zones.
+                        </p>
+                    </div>
+                    <div class="border-t border-zinc-800 pt-3 flex flex-wrap gap-2">
+                        <a href="https://spotify.com" target="_blank" class="text-xs font-bold text-white hover:text-red-500 uppercase tracking-wider mr-3">Spotify ↗</a>
+                        <a href="https://telegram.org" target="_blank" class="text-xs font-bold text-white hover:text-red-500 uppercase tracking-wider">Telegram Link ↗</a>
+                    </div>
+                </div> -->
+
+            </div>
+
+            <!-- Warning Callout Box -->
+            <div class="w-full max-w-3xl border border-zinc-800 bg-zinc-950/60 p-4 text-center mb-6">
+                <p class="text-xs font-bold uppercase tracking-widest text-zinc-400">
+                    📢 Support individual creators directly via their native donation platforms to keep independent streaming operations sustainable.
+                </p>
+            </div>
+
+            <!-- Back Action Button -->
+            <div class="flex flex-col sm:flex-row w-full sm:w-auto px-4 sm:px-0">
+                <a href="../index.html"
+                   class="action-btn w-full sm:w-auto text-center bg-white hover:bg-red-600 text-black hover:text-white text-sm font-black uppercase py-3 px-8 rounded-none tracking-wide">
+                    ← Back to Dashboard
+                </a>
+            </div>
+
+        </div>
+
+        <!-- Sticky Bottom Footer -->
+        <div class="absolute bottom-4 left-1/2 -translate-x-1/2 text-zinc-600 text-xs font-bold tracking-widest text-center w-full px-4 z-20 uppercase">
+            Stand With Indian Students • Secure Coordination via: <span class="text-zinc-400">anahata.software@gmail.com</span>
+        </div>
+    </div>
+</body>
+</html>
