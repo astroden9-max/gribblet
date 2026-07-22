@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>LIVE UPDATES: Student Protest & Crackdown Timeline</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Montserrat', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #000000;
+        }
+
+        .blackout-bg {
+            position: relative;
+            width: 100vw;
+            min-height: 100vh;
+            background-image: linear-gradient(rgba(0, 0, 0, 0.94), rgba(0, 0, 0, 0.99)), url('./assets/images/blackout_crackdown.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            display: flex;
+            flex-direction: column;
+            color: white;
+        }
+
+        .text-shadow-emergency {
+            text-shadow: 0px 0px 12px rgba(220, 38, 38, 0.7);
+        }
+
+        .action-btn {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .action-btn:hover {
+            transform: scale(1.02);
+            box-shadow: 0 0 20px rgba(220, 38, 38, 0.6);
+        }
+
+        .timeline-pulse {
+            position: relative;
+        }
+        .timeline-pulse::before {
+            content: '';
+            position: absolute;
+            left: -17px;
+            top: 6px;
+            width: 8px;
+            height: 8px;
+            background-color: #dc2626;
+            border-radius: 50%;
+        }
+    </style>
+</head>
+<body>
+    <div class="blackout-bg p-4 sm:p-6 pb-24">
+        
+        <!-- Cross-Navigation Header -->
+        <div class="w-full max-w-4xl mx-auto pt-4 mb-4 flex justify-between items-center text-xs font-black uppercase tracking-widest">
+            <a href="index.html" class="text-zinc-400 hover:text-white transition-colors">
+                ← Main Dashboard
+            </a>
+            <a href="uncensored_media.html" class="text-red-500 hover:text-red-400 transition-colors">
+                Switch to Media Outlets →
+            </a>
+        </div>
+
+        <div class="flex flex-col items-center justify-center text-center z-10 max-w-4xl mx-auto w-full pt-4">
+            
+            <!-- Alert Badge -->
+            <span class="bg-zinc-900 text-red-500 text-xs md:text-sm font-black uppercase tracking-widest px-5 py-2 rounded-none border border-red-600 mb-6 animate-pulse">
+                🔴 LIVE SITUATION ROOM: REAL-TIME LOGS
+            </span>
+            
+            <h1 class="text-4xl sm:text-5xl md:text-6xl font-black uppercase tracking-tighter text-white leading-none mb-4">
+                GROUND <span class="text-red-600 text-shadow-emergency">SITREP & LOGS</span>
+            </h1>
+
+            <p class="text-sm md:text-base font-bold mb-12 text-gray-400 max-w-2xl mx-auto uppercase tracking-wide">
+                Bypassing standard communication channels. Verified updates from coordinates near Raisina Road, Jantar Mantar, and Delhi University campus sectors.
+            </p>
+
+            <!-- Timeline Block Container -->
+            <div class="w-full text-left border-l border-zinc-800 pl-6 space-y-8 max-w-2xl mx-auto mb-12">
+                
+                <!-- Log Entry 1 (Most Recent) -->
+                <div class="timeline-pulse">
+                    <div class="flex items-center space-x-3 mb-1">
+                        <span class="text-xs font-black text-red-500 bg-red-950/50 border border-red-900 px-2 py-0.5 uppercase tracking-wider">CRITICAL</span>
+                        <span class="text-xs font-bold text-zinc-500">20 Mins Ago</span>
+                    </div>
+                    <h3 class="text-lg font-black uppercase tracking-tight text-white">Raisina Road Blockade Reinforced</h3>
+                    <p class="text-xs text-gray-400 font-medium leading-relaxed mt-1">
+                        Multiple barricade lines erected to cut off the main student march heading toward the legislative district. Additional water cannons stationed at outer junctions. Unfiltered visuals are being redirected to our Telegram networks.
+                    </p>
+                </div>
+
+                <!-- Log Entry 2 -->
+                <div class="timeline-pulse">
+                    <div class="flex items-center space-x-3 mb-1">
+                        <span class="text-xs font-black text-zinc-400 bg-zinc-900 border border-zinc-700 px-2 py-0.5 uppercase tracking-wider">UPDATE</span>
+                        <span class="text-xs font-bold text-zinc-500">2 Hours Ago</span>
+                    </div>
+                    <h3 class="text-lg font-black uppercase tracking-tight text-zinc-300">Medical Aid Tents Assembled</h3>
+                    <p class="text-xs text-gray-400 font-medium leading-relaxed mt-1">
+                        Volunteer networks and citizen doctors have established primary medical response points behind the civilian line to treat tear gas inhalation and minor blunt injuries.
+                    </p>
+                </div>
+
+                <!-- Log Entry 3 -->
+                <div class="timeline-pulse">
+                    <div class="flex items-center space-x-3 mb-1">
+                        <span class="text-xs font-black text-zinc-400 bg-zinc-900 border border-zinc-700 px-2 py-0.5 uppercase tracking-wider">COMMUNICATION</span>
+                        <span class="text-xs font-bold text-zinc-500">4 Hours Ago</span>
+                    </div>
+                    <h3 class="text-lg font-black uppercase tracking-tight text-zinc-300">Localized Transit Blocked</h3>
+                    <p class="text-xs text-gray-400 font-medium leading-relaxed mt-1">
+                        Select subway entry points and vehicle exit pathways near central protest zones are heavily regulated or shut down. Pedestrians advised to map alternative fallback coordinates.
+                    </p>
+                </div>
+
+                <!-- Log Entry 4 -->
+                <div class="timeline-pulse">
+                    <div class="flex items-center space-x-3 mb-1">
+                        <span class="text-xs font-black text-red-500 bg-red-950/50 border border-red-900 px-2 py-0.5 uppercase tracking-wider">HOUSE REACTION</span>
+                        <span class="text-xs font-bold text-zinc-500">6 Hours Ago</span>
+                    </div>
+                    <h3 class="text-lg font-black uppercase tracking-tight text-white">Parliament Session Adjourned Amid Uproar</h3>
+                    <p class="text-xs text-gray-400 font-medium leading-relaxed mt-1">
+                        Opposition lawmakers staged a coordinated demonstration inside the well of the House, demanding an instantaneous statement regarding youth paper leak security. The session was abruptly cut short.
+                    </p>
+                </div>
+
+            </div>
+
+            <!-- Context Protocol Box -->
+            <div class="w-full max-w-2xl border border-zinc-800 bg-zinc-950/60 p-4 text-center mb-8">
+                <p class="text-[11px] font-bold uppercase tracking-widest text-zinc-400 leading-normal">
+                    ⚠️ COORDINATION SECURITY: This timeline updates via verified peer infrastructure. In the event of network disruption, secondary field nodes will push alerts to independent creators.
+                </p>
+            </div>
+
+            <!-- Footer Return Navigation Buttons -->
+            <div class="flex flex-col sm:flex-row w-full sm:w-auto space-y-3 sm:space-y-0 sm:space-x-4 px-4 sm:px-0">
+                <a href="index.html"
+                   class="action-btn w-full sm:w-56 text-center bg-white hover:bg-red-600 text-black hover:text-white text-sm font-black uppercase py-3 px-8 rounded-none tracking-wide">
+                    ← Back to Dashboard
+                </a>
+                <a href="independent_creators.html"
+                   class="action-btn w-full sm:w-56 text-center bg-transparent border border-zinc-700 text-zinc-400 hover:text-white text-sm font-bold py-3 px-8 rounded-none tracking-wide">
+                    View Creator Streams
+                </a>
+            </div>
+
+        </div>
+
+        <!-- System Footer Alignment -->
+        <div class="absolute bottom-4 left-1/2 -translate-x-1/2 text-zinc-600 text-xs font-bold tracking-widest text-center w-full px-4 z-20 uppercase">
+            Stand With Indian Students • Secure Coordination via: <span class="text-zinc-400">anahata.software@gmail.com</span>
+        </div>
+    </div>
+</body>
+</html>
